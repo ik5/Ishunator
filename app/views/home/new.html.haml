@@ -1,0 +1,126 @@
+- unless @complaint.errors.empty?
+  = div_for(@complaint, :class => "alert-message block-message error") do
+    %p
+      %strong
+        הטופס שהוזן אינו תקין:
+    %ul
+      - @complaint.errors.full_messages.each do |e|
+        %li= e
+= form_for(@complaint, :url => { :action => :create }) do |f|
+  .field
+    = f.label(:event_date, "תאריך האירוע")
+    .date-select
+      = f.date_select(:event_date, :start_year => 2007, :use_month_numbers => true, :order => [:day, :month, :year])
+  .field
+    = f.label(:business_type_id, "סוג עסק")
+    = f.collection_select(:business_type_id, BusinessType.all, :id, :name)
+    .details{ "data-toggleon" => "complaint_business_type_id", "data-togglevalue" => 7}
+      = f.label(:business_type_other, "פירוט:")
+      = f.text_field(:business_type_other)
+  .field
+    = f.label(:business_name, "שם העסק")
+    = f.text_field(:business_name)
+  .field
+    = f.label(:business_address, "כתובת העסק")
+    = f.text_field(:business_address)
+  .field
+    = f.label(:city_id, "עיר\\מועצה מקומית")
+    = f.collection_select(:city_id, City.all, :id, :name, :prompt => "בחר עיר")
+  .field
+    = f.label(:complaint_sender_name, "שם המדווח (לא חובה)")
+    = f.text_field(:complaint_sender_name)
+  %fieldset
+    %legend
+      בעל העסק לא אוכף את איסור העישון
+    %ul.check-list
+      %li
+        = f.check_box(:smoking_person)
+        = f.label(:smoking_person, "אדם שעישן במקום אסור, לא התבקש להפסיק ע\"י אחד העובדים.")
+      %li
+        = f.check_box(:smoking_ashtrays)
+        = f.label(:smoking_ashtrays, "מוצבות מאפרות שלא בחדר עישון…")
+        .details{ "data-toggleon" => "complaint_smoking_ashtrays" }
+          = f.label(:smoking_ashtrays_details, "פירוט היכן:")
+          = f.text_field(:smoking_ashtrays_details)
+  %fieldset
+    %legend
+      חדר העישון אינו חוקי
+    %ul.check-list
+      %li
+        = f.check_box(:smoking_room_not_seperate)
+        = f.label(:smoking_room_not_seperate, "אינו נמצא בחדר נפרד לחלוטין.")
+      %li
+        = f.check_box(:smoking_room_too_large)
+        = f.label(:smoking_room_too_large, "החדר גדול מרבע מהשטח הפתוח לציבור המסעדה.")
+      %li
+        %ul.inline-check-list
+          %li
+            נדרש לעבור דרכו על מנת:
+          %li
+            = f.check_box(:smoking_room_must_pass_through_to_public_area)
+            = f.label(:smoking_room_must_pass_through_to_public_area, "להיכנס למקום הציבורי")
+          %li
+            = f.check_box(:smoking_room_must_pass_through_to_bathroom)
+            = f.label(:smoking_room_must_pass_through_to_bathroom, "להגיע לשירותים")
+          %li
+            = check_box_tag(:smoking_room_must_pass_through_to_other_check)
+            = label_tag(:smoking_room_must_pass_through_to_other_check, "להגיע למקום אחר…")
+        .details{ "data-toggleon" => "smoking_room_must_pass_through_to_other_check" }
+          = f.label(:smoking_room_must_pass_through_to_other, "פירוט:")
+          = f.text_field(:smoking_room_must_pass_through_to_other)
+      %li
+        = f.check_box(:smoking_room_not_closed)
+        = f.label(:smoking_room_not_closed, "הפתח המוביל אליו לא נשמר סגור (למעט בזמן כניסה ויציאה).")
+      %li
+        = check_box_tag(:smoking_room_smoking_outside_details_check)
+        = label_tag(:smoking_room_smoking_outside_details_check, "מורגש ריח עישון או נראה עשן סיגריות באיזור אחר…")
+        .details{ "data-toggleon" => "smoking_room_smoking_outside_details_check" }
+          = f.label(:smoking_room_smoking_outside_details, "פירוט היכן:")
+          = f.text_field(:smoking_room_smoking_outside_details)
+  %fieldset
+    %legend
+      אין שילוט בדבר איסור עישון, כנדרש בחוק (במידה ומדובר במקום בילוי)
+    %ul.check-list
+      %li
+        = f.check_box(:smoking_no_signs)
+        = f.label(:smoking_no_signs, "אין שילוט כנדרש בחוק - לפחות שלט \"העישון אסור\" אחד על כל 10 מטר קיר.")
+      %li
+        = f.check_box(:smoking_signs_too_small)
+        = f.label(:smoking_signs_too_small, "השלטים קטנים מ-20×30 ס\"מ.")
+      %li
+        = f.check_box(:smoking_signs_not_at_height)
+        = f.label(:smoking_signs_not_at_height, "השלטים לא מוצבים בגובה של כ-2 מטר.")
+      %li
+        = check_box_tag(:smoking_signs_hidden_details_check)
+        = label_tag(:smoking_signs_hidden_details_check, "השלטים מוסתרים או מוצנעים…")
+        .details{ "data-toggleon" => "smoking_signs_hidden_details_check" }
+          = f.label(:smoking_signs_hidden_details, "פירוט:")
+          = f.text_field(:smoking_signs_hidden_details)
+  %fieldset{ :class => "statement" }
+    %legend
+      הצהרה
+    %p
+      ‫אנו ממליצים בנוסף לחתום על ההצהרה מטה. במקרים בהם תמולא ההצהרה יאפשר הדבר לעירייה לנקוט הליך‬
+      ‫משפטי כנגד מפרי החוק. במקרה זה יתכן ותידרש עדות מטעם המתלונן. מילוי ההצהרה יסייע לאכוף את החוק‬
+      ‫ביעילות רבה יותר.‬
+    %ul.check-list
+      %li
+        = check_box_tag(:statement_accept)
+        = label_tag(:statement_accept, "‫הנני מצהיר/ה כי אהיה מוכן/ה להעיד על נכונות הדברים המדווחים בטופס זה בבית משפט, במידה ואקרא לדיון.‬")
+        .details{ "data-toggleon" => :statement_accept }
+          .field
+            = f.label(:statement_full_name, "שם מלא")
+            = f.text_field(:statement_full_name)
+          .field
+            = f.label(:statement_address, "כתובת")
+            = f.text_field(:statement_address)
+          .field
+            = f.label(:statement_phone, "טלפון")
+            = f.text_field(:statement_phone)
+          .field
+            = f.label(:statement_email, "כתובת מייל")
+            = f.text_field(:statement_email)
+          .field
+            = f.label(:statement_id, "ת.ז.")
+            = f.number_field(:statement_id, :min => 100000000, :max => 999999999)
+  = f.submit("שלח", :class => "btn primary")

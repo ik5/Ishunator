@@ -1,0 +1,559 @@
+@import "compass/css3";
+@import "compass/layout";
+
+@include sticky_footer(80px, "#container", "#container-footer", "footer");
+
+$background: #d7d7d7;
+$secondarybackground: #696969;
+$foreground: #4A2B2B;
+$highlight: #B22222;
+$bright: #FDF2DF;
+
+$padding: 200px;
+
+::-moz-selection { background: $highlight; color: #fff; text-shadow: none; }
+::selection { background: $highlight; color: #fff; text-shadow: none; }
+
+body {
+  background: $background;
+  color: $foreground;
+  direction: rtl;
+  font-size: 11pt;
+  line-height: 18px;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+  margin: 0;
+}
+
+#main {
+  padding: 0 $padding;
+  margin-bottom: 18px;
+}
+
+ul, ol {
+  list-style-type: none;
+  padding: 0;
+}
+
+p {
+  margin: 5px 0;
+}
+
+a:link, a:hover, a:visited {
+  text-decoration: none;
+}
+
+a:link, a:visited {
+  color: $highlight;
+}
+
+a:hover {
+  color: lighten($highlight, 20%);
+}
+
+header {
+  background: darken($background, 20%);
+  @include box-shadow(0 -20px 20px 20px rgba(0, 0, 0, 0.8), 0 10px 25px -15px rgba(0, 0, 0, 0.6) inset);
+  margin-bottom: 18px;
+  padding: 30px $padding;
+  
+  hgroup {
+    background: url('nosmoking.png') transparent no-repeat center right;
+    height: 80px;
+    padding-right: 100px;
+  }
+  #title a {
+    color: $highlight;
+    @include text-shadow(0 2px 0 opacify(lighten($highlight, 10%), 0.5));
+  }
+  #title {
+    font-size: 28pt;
+    line-height: 50px;
+  }
+  h2 {
+    color: $foreground;
+    font-size: 13pt;
+    line-height: 20px;
+  }
+}
+
+footer {
+  background: $secondarybackground;
+  @include box-shadow(0 20px 20px 20px rgba(0, 0, 0, 0.6), 0 10px 25px -15px rgba(0, 0, 0, 0.6) inset);
+  line-height: 80px;
+  padding: 0 $padding;
+  
+  ul li {
+    display: inline-block;
+    border-left: 1px solid #fff;
+  }
+  a:link {
+    color: #fff;
+    @include text-shadow(0 1px 1px #000);
+  }
+  a:hover {
+    color: $bright;
+    text-decoration: underline;
+  }
+  ul li:last-child {
+    border-left: 0;
+  }
+} 
+
+#thankyou {  
+  .thanks {
+    font-size: 17pt;
+  }
+}
+
+fieldset legend {
+    display: block;
+    font-size: 13pt;
+    line-height: 1;
+}
+
+#thankyou .thanks, fieldset legend {
+  color: $highlight;
+  @include text-shadow(0 1px 0 opacify(darken($highlight, 15%), 0.5));
+}
+
+.field, fieldset {
+  margin-bottom: 18px;
+}
+
+.field:before,
+.field:after {
+    content:"";
+    display:table;
+}
+
+.field:after {
+    clear:both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.field {
+    zoom:1;
+}
+
+.field label[for], .check-list label[for], .details label[for], .check-list .details label[for] {
+  cursor: pointer;
+  float: right;
+  padding-top: 6px;
+  text-align: right;
+  width: 150px;
+}
+
+.field select, .field input, .details input {
+  margin-right: 15px;
+}
+
+input, select, textarea {
+  border: 1px solid $secondarybackground;
+  border-radius: 3px;
+  display: inline-block;
+  padding: 4px;
+  width: 210px;
+}
+
+select {
+  height: 27px;
+  line-height: 27px;
+}
+
+input, textarea {
+    -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    -webkit-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.1) inset);
+}
+
+input:focus, textarea:focus {
+    border-color: opacify($highlight, 0.8);
+    @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.1) inset, 0 0 6px opacify($highlight, 0.6));
+    outline: 0 none;
+}
+
+input[type="file"]:focus, input[type="checkbox"]:focus, select:focus {
+    @include box-shadow(none);
+    outline: 1px dotted #666666;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    border: medium none;
+    cursor: pointer;
+    height: auto;
+    line-height: normal;
+    margin: 3px 0;
+    padding: 0;
+    width: auto;
+}
+
+.btn.primary {
+    background-color: darken($highlight, 10%);
+    background-repeat: repeat-x;
+    @include linear-gradient(color-stops($highlight, darken($highlight, 10%)));
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #fff;
+    @include text-shadow(0 -1px 0 rgba(0, 0, 0, 0.25));
+}
+
+.btn.huge {
+    border-radius: 8px 8px 8px 8px;
+    font-size: 15pt;
+    line-height: normal;
+    padding: 12px 20px;
+}
+
+input[type="button"], input[type="reset"], input[type="submit"] {
+    height: auto;
+    width: auto;
+}
+
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+    cursor: pointer;
+}
+
+.btn {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    -moz-transition: all 0.1s linear 0s;
+    background-color: #E6E6E6;
+    @include linear-gradient(color-stops(#fff, #fff 25%, #E6E6E6), top);
+    background-repeat: no-repeat;
+    border-color: #ccc #ccc #bbb;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 1px;
+    @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05));
+    color: #333;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    line-height: normal;
+    padding: 5px 14px 6px;
+    @include text-shadow(0 1px 1px rgba(255, 255, 255, 0.75));
+}
+
+.btn:hover {
+    background-position: 0 -15px;
+    color: $bright;
+    text-decoration: none;
+}
+
+.btn:focus {
+    outline: 1px dotted #666666;
+}
+
+.btn.active, .btn:active {
+    @include box-shadow(0 2px 4px rgba(0, 0, 0, 0.4) inset, 0 1px 2px rgba(0, 0, 0, 0.15));
+}
+
+.btn-pad {
+  margin-top: 18px;
+  text-align: center;
+}
+
+button.btn::-moz-focus-inner, input.btn[type="submit"]::-moz-focus-inner {
+    border: 0 none;
+    padding: 0;
+}
+
+.check-list {
+  margin-top: 5px;
+  padding-bottom: 5px;
+}
+
+.check-list li {
+  margin-bottom: 3px;
+}
+
+.check-list input[type="radio"], .check-list input[type="checkbox"] {
+    float: right;
+    margin-bottom: 0;
+    margin-left: -20px;
+}
+
+.check-list label[for] {
+    display: block;
+    float: none;
+    line-height: 18px;
+    margin-right: 20px;
+    padding: 0;
+    text-align: right;
+    white-space: normal;
+    width: auto;
+}
+
+.inline-check-list {
+  overflow: hidden;
+  
+  label[for], span {
+    display: inline-block;
+    float: none;
+  }
+  li {
+    float: right;
+  }
+  input[type="checkbox"] {
+    float: none;
+    margin-top: 0;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+}
+
+.date-select select {
+  width: 60px;
+  margin: 0;
+}
+.date-select select:first-child {
+  margin-right: 15px;
+}
+.date-select select:last-child {
+  width: 80px;
+}
+.details {
+  display: none;
+  margin-top: 5px;
+}
+
+#letter {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  border-radius: 6px;
+  @include box-shadow(0 5px 10px 0 rgba(0, 0, 0, 0.4));
+  font-size: 11pt;
+  padding: 10px;
+  
+  h2, h3 {
+    margin: 10px 0;
+  }
+  
+  h2 {
+    font-size: 120%;
+  }
+  
+  h3 {
+    font-size: 100%;
+  }
+  
+  p {
+    margin: 5px 0;
+  }
+  
+  ol {
+    list-style-type: decimal;
+    padding-right: 23px;
+  }
+  
+  em {
+    font-style: normal;
+    font-weight: bold;
+  }
+  
+  .date {
+    float: left;
+  }
+  
+  #statement {
+    border: 1px solid #000;
+    margin-top: 10px;
+    padding: 10px;
+  
+    h3 {
+      margin-top: 0;
+    }
+    dl {
+      overflow: hidden;
+    }
+    dt.first {
+      clear: right;
+    }
+    dd, dt {
+      float: right;
+      margin: 0 0 0 10px;
+      width: 130px;
+    }
+    dt {
+      border-top: 1px solid #000;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  }
+}
+
+.close {
+    color: #000000;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 13.5px;
+    opacity: 0.25;
+    @include text-shadow(0 1px 0 #FFFFFF);
+}
+.close:hover {
+    color: #000000;
+    opacity: 0.4;
+    text-decoration: none;
+}
+.alert-message {
+    background-color: #EEDC94;
+    @include linear-gradient(color-stops(#FCEEC1, #EEDC94), top);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 1px;
+    @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.25) inset);
+    color: #404040;
+    margin-bottom: 18px;
+    padding: 7px 15px;
+    position: relative;
+    @include text-shadow(0 1px 0 rgba(255, 255, 255, 0.5));
+}
+.alert-message .close {
+    margin-top: 1px;
+}
+.alert-message a {
+    color: #404040;
+    font-weight: bold;
+}
+.alert-message.danger p a, .alert-message.error p a, .alert-message.success p a, .alert-message.info p a {
+    color: #FFFFFF;
+}
+.alert-message h5 {
+    line-height: 18px;
+}
+.alert-message p {
+    margin-bottom: 0;
+}
+.alert-message div {
+    line-height: 28px;
+    margin-bottom: 2px;
+    margin-top: 5px;
+}
+.alert-message .btn {
+    @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.25));
+}
+.alert-message.block-message {
+    background-color: #FDF5D9;
+    background-image: none;
+    border-color: #FCEEC1;
+    @include box-shadow(none);
+    padding: 14px;
+}
+.alert-message.block-message ul, .alert-message.block-message p {
+    margin: 0 0 0 30px;
+}
+.alert-message.block-message ul {
+    margin-bottom: 0;
+}
+.alert-message.block-message li {
+    color: #404040;
+}
+.alert-message.block-message .alert-actions {
+    margin-top: 5px;
+}
+.alert-message.block-message.error, .alert-message.block-message.success, .alert-message.block-message.info {
+    color: #404040;
+    @include text-shadow(0 1px 0 rgba(255, 255, 255, 0.5));
+}
+.alert-message.block-message.error {
+    background-color: #FDDFDE;
+    border-color: #FBC7C6;
+}
+.alert-message.block-message.success {
+    background-color: #D1EED1;
+    border-color: #BFE7BF;
+}
+.alert-message.block-message.info {
+    background-color: #DDF4FB;
+    border-color: #C6EDF9;
+}
+.alert-message.block-message.danger p a, .alert-message.block-message.error p a, .alert-message.block-message.success p a, .alert-message.block-message.info p a {
+    color: #404040;
+}
+
+.no-rgba {
+  .alert-message.block-message.error, .alert-message.block-message.success, .alert-message.block-message.info {
+    @include text-shadow(0 1px 0 #000);
+  }
+  .alert-message .btn {
+    @include box-shadow(0 1px 0 #000);
+  }
+  .alert-message {
+    border-color: #000;
+    @include box-shadow(0 1px 0 #fff inset);
+    @include text-shadow(0 1px 0 #000);
+  }
+  .btn {
+    @include box-shadow(0 1px 0 #fff inset, 0 1px 2px #000);
+    @include text-shadow(0 1px 1px #fff);
+  }
+  .btn.active, .btn:active {
+    @include box-shadow(0 2px 4px #000 inset, 0 1px 2px #000);
+  }
+  .btn.primary {
+    border-color: #000;
+    @include text-shadow(0 -1px 0 #000);
+  }
+  input:focus, textarea:focus {
+    @include box-shadow(0 1px 3px #000 inset, 0 0 6px $highlight);
+  }
+  #thankyou .thanks, fieldset legend {
+    @include text-shadow(0 1px 0 darken($highlight, 15%));
+  }
+  footer {
+    @include box-shadow(0 20px 20px 20px #000, 0 10px 25px -15px #000 inset);
+  }
+  header #title a {
+    @include text-shadow(0px 2px 1px #fff);
+  }
+  header {
+    @include box-shadow(0 -20px 20px 20px #000, 0 10px 25px -15px #000 inset);
+  }
+}
+
+/* ==|== media queries ====================================================== */
+
+@media only screen and (max-width: 480px) {
+  header, footer, #main {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+  
+  .field {
+    margin-bottom: 10px;
+  }
+  
+  .field label[for] {
+    float: none;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .field input, .field select, .field select:first-child {
+    margin-right: 0;
+  }
+  
+  .inline-check-list li {
+    float: none !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  header, footer, #main {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  .inline-check-list li {
+    float: none !important;
+  }
+  
+}

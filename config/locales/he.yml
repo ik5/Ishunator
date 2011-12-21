@@ -1,0 +1,19 @@
+he:
+  testabc: "ניסיון"
+  activerecord:
+    errors:
+      messages:
+        blank: "אינו יכול להיות ריק"
+        not_a_number: "אינה מספר"
+        greater_than_or_equal_to: "גדול או שווה ל-"
+        less_than_or_equal_to: "קטן או שווה ל-"
+        email: "אינה כתובת מייל"
+    attributes:
+      complaint:
+        city_id: "העיר"
+        event_date: "תאריך האירוע"
+        business_type: "סוג העסק"
+        business_name: "שם העסק"
+        business_address: "כתובת העסק"
+        statement_id: "תעודת הזהות"
+        statement_email: "כתובת המייל"
