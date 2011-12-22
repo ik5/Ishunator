@@ -17,11 +17,11 @@ class HomeController < ApplicationController
   end
   
   def thankyou
-    @complaint = Complaint.find_by_id(params[:id])
+    @complaint = Complaint.find_by_id(params[:id]) || not_found
   end
 
   def view
-    @complaint = Complaint.joins(:city, :business_type).find_by_id(params[:id])
+    @complaint = Complaint.joins(:city, :business_type).find_by_id(params[:id]) || not_found
     
     @must_pass_through = []
     @must_pass_through << "להיכנס למקום הציבורי" if @complaint.smoking_room_must_pass_through_to_public_area
