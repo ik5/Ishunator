@@ -143,6 +143,17 @@ fieldset legend {
   padding-top: 6px;
   text-align: right;
   width: 150px;
+  
+  sup {
+    background-color: #B94A48;
+    color: #fff;
+    font-size: 7pt;
+    font-weight: bold;
+    padding: 0px 2px 1px;
+    top: -0.7em;
+    
+    @include border-radius(3px);
+  }
 }
 
 .field select, .field input, .details input {
@@ -150,11 +161,16 @@ fieldset legend {
 }
 
 input, select, textarea {
+  background: #fff;
   border: 1px solid $secondarybackground;
   border-radius: 3px;
   display: inline-block;
   padding: 4px;
   width: 210px;
+}
+
+textarea {
+  width: auto;
 }
 
 select {
@@ -376,12 +392,19 @@ button.btn::-moz-focus-inner, input.btn[type="submit"]::-moz-focus-inner {
     dd, dt {
       float: right;
       margin: 0 0 0 10px;
+      min-height: 1em;
       width: 130px;
     }
     dt {
       border-top: 1px solid #000;
       font-weight: bold;
       margin-top: 10px;
+    }
+    dd.email, dt.email {
+      width: 160px;
+    }
+    dd.id, dt.id {
+      width: 100px;
     }
   }
 }
@@ -515,6 +538,42 @@ button.btn::-moz-focus-inner, input.btn[type="submit"]::-moz-focus-inner {
   }
   header {
     @include box-shadow(0 -20px 20px 20px #000, 0 10px 25px -15px #000 inset);
+  }
+  .images a {
+    @include box-shadow(0 1px 1px #000);
+    
+    &:hover {
+      @include box-shadow(0 1px 4px $highlight);
+    }
+  }
+}
+
+.images {
+  overflow: hidden;
+  padding: 3px 0;
+  
+  a {
+    border: 1px solid #DDD;
+    float: right;
+    line-height: 1;
+    margin-left: 5px;
+    padding: 4px;
+    width: 120px;
+    
+    @include border-radius(4px);
+    @include box-shadow(0 1px 1px rgba(0, 0, 0, 0.075));
+    
+    &:hover {
+      border-color: $highlight;
+      @include box-shadow(0 1px 4px opacify($highlight, 0.25));
+    }
+    
+    img {
+      display: block;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 }
 

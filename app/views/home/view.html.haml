@@ -3,8 +3,7 @@
   %p
     %span
       לכבוד
-    %br/
-    :plain
+      %br/
       עריית/מועצה מקומית #{@complaint.city.name}
   %h2
     הנדון:
@@ -66,33 +65,40 @@
         %li
           :plain
             השלטים מוסתרים או מוצנעים. פירוט: #{@complaint.smoking_signs_hidden_details}
-  - unless @complaint.complaint_sender_name.blank?
-    %p
-      :plain
-        שם השולח: #{@complaint.complaint_sender_name}
-  - if ! @complaint.statement_full_name.blank? && ! @complaint.statement_address.blank? && ! @complaint.statement_phone.blank? && @complaint.statement_id
+    - if @complaint.smoking_comment.present? || @complaint.smoking_image1.present? || @complaint.smoking_image2.present? || @complaint.smoking_image3.present?
+      %h3
+        פרטים נוספים
+      = simple_format( @complaint.smoking_comment ) unless @complaint.smoking_comment.blank?
+      - if @complaint.smoking_image1.present?
+        %h4
+          תמונות מצורפות
+        .images
+          - (1..3).each do |i|
+            = link_to( image_tag( @complaint.try("smoking_image#{i}").url(:thumbnail) ), @complaint.try("smoking_image#{1}").url(:normal) ) if @complaint.try("smoking_image#{i}?")
+      
     #statement
       %h3
-        הצהרה
-      %p
-        הנני מצהיר/ה כי אהיה מוכן/ה להעיד על נכונות הדברים המדווחים בטופס זה בבית משפט, במידה ואקרא לדיון.
+        הצהרה ופרטים אישיים
       %dl
         %dd= @complaint.statement_full_name
+        %dd.email= @complaint.statement_email
+        %dd.id= @complaint.statement_id
         %dd= @complaint.statement_address
         %dd= @complaint.statement_phone
-        %dd= @complaint.statement_email unless @complaint.statement_email.blank?
-        %dd= @complaint.statement_id
         %dd.last= @complaint.created_at.strftime("%d/%m/%Y")
         %dt.first
           שם מלא
+        %dt.email
+          כתובת מייל
+        %dt.id
+          ת.ז.
         %dt
           כתובת
         %dt
           טלפון
         %dt
-          ת.ז.
-        - unless @complaint.statement_email.blank?
-          %dt
-            כתובת מייל
-        %dt
           תאריך
+      - if @complaint.statement_agreement
+        %p
+          %strong
+            הנני מצהיר/ה כי אהיה מוכן/ה להעיד על נכונות הדברים המדווחים בטופס זה בבית משפט, במידה ואקרא לדיון.

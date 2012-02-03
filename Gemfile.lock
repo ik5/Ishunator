@@ -7,6 +7,16 @@ GIT
       fssm (>= 0.2.7)
       sass (~> 3.1)
 
+GIT
+  remote: git://github.com/thoughtbot/paperclip.git
+  revision: 5d4ba628dedc90cb035c874f0479985b7dc767a1
+  specs:
+    paperclip (2.5.2)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
+      cocaine (>= 0.0.2)
+      mime-types
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -41,6 +51,7 @@ GEM
     arel (2.2.1)
     builder (3.0.0)
     chunky_png (1.2.5)
+    cocaine (0.2.1)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
       railties (~> 3.1.0)
@@ -126,6 +137,7 @@ DEPENDENCIES
   jquery-rails
   json
   mysql
+  paperclip!
   rails (= 3.1.1)
   rdiscount
   sass-rails (~> 3.1.4)
