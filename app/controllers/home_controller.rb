@@ -18,6 +18,9 @@ class HomeController < ApplicationController
     @complaint.city_id = 227
     
     if @complaint.valid? && @complaint.save
+      
+      Notifier.complaint(@complaint).deliver
+      
       redirect_to(:action => :thankyou, :id => @complaint.id)
     else
       render(:action => :index)

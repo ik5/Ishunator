@@ -1,0 +1,2 @@
+module ComplaintRecipientsHelper
+end

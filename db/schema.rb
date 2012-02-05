@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120203172029) do
+ActiveRecord::Schema.define(:version => 20120204224031) do
 
   create_table "business_types", :force => true do |t|
     t.string   "name",       :null => false
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(:version => 20120203172029) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "complaint_recipients", :force => true do |t|
+    t.integer "city_id",                       :null => false
+    t.string  "email",                         :null => false
+    t.integer "recipient_type", :default => 0, :null => false
+  end
+
+  add_index "complaint_recipients", ["city_id"], :name => "index_complaint_recipients_on_city_id"
+  add_index "complaint_recipients", ["email"], :name => "index_complaint_recipients_on_email", :unique => true
 
   create_table "complaints", :force => true do |t|
     t.integer  "city_id",                                                          :null => false

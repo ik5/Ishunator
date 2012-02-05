@@ -1,4 +1,15 @@
 Ishunon::Application.routes.draw do
+  
+  namespace :admin do
+  
+    resources :complaint_recipients, :only => [:index, :create, :update, :destroy], :path => :recipients, :as => :recipients do
+      collection do
+        delete '/' => 'complaint_recipients#destroy'
+      end
+    end
+  
+  end
+  
   get "home/index"
   
   get "home/new"
