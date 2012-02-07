@@ -8,34 +8,61 @@
         %li= e
 = form_for(@complaint, :url => { :action => :create }, :html => { :multipart => true }) do |f|
   .field
-    = f.label(:event_date, "תאריך האירוע")
-    .date-select
-      = f.date_select(:event_date, :start_year => 2007, :use_month_numbers => true, :order => [:day, :month, :year])
-  .field
-    = f.label(:business_type_id, "סוג עסק")
-    = f.collection_select(:business_type_id, BusinessType.all, :id, :name)
-    .details{ "data-toggleon" => "complaint_business_type_id", "data-togglevalue" => 7}
-      = f.label(:business_type_other, "פירוט:")
-      = f.text_field(:business_type_other)
-  .field
-    = label_tag(:complaint_business_name) do
-      שם העסק
+    = label_tag(:complaint_statement_full_name) do
+      שם מלא
       %sup
         חובה
-    = f.text_field(:business_name)
+    = f.text_field(:statement_full_name)
   .field
-    = label_tag(:complaint_business_address) do
-      כתובת העסק
+    = label_tag(:complaint_statement_email) do
+      כתובת מייל
       %sup
         חובה
-    = f.text_field(:business_address)
+    = f.text_field(:statement_email)
   .field
-    = label_tag(:complaint_city_id) do
-      עיר\מועצה מקומית
+    = label_tag(:complaint_statement_id) do
+      ת.ז.
       %sup
         חובה
-    -# f.collection_select(:city_id, City.all, :id, :name, :prompt => "בחר עיר")
-    = f.collection_select(:city_id, City.find(227).to_a, :id, :name)
+    = f.number_field(:statement_id, :min => 100000000, :max => 999999999)
+  .field
+    = f.label(:statement_address, "כתובת")
+    = f.text_field(:statement_address)
+  .field
+    = f.label(:statement_phone, "טלפון")
+    = f.text_field(:statement_phone)
+  %fieldset
+    %legend
+      פרטי מקרה
+    .field
+      = f.label(:event_date, "תאריך האירוע")
+      .date-select
+        = f.date_select(:event_date, :start_year => 2007, :use_month_numbers => true, :order => [:day, :month, :year])
+    .field
+      = f.label(:business_type_id, "סוג עסק")
+      = f.collection_select(:business_type_id, BusinessType.all, :id, :name)
+      .details{ "data-toggleon" => "complaint_business_type_id", "data-togglevalue" => 7}
+        = f.label(:business_type_other, "פירוט:")
+        = f.text_field(:business_type_other)
+    .field
+      = label_tag(:complaint_business_name) do
+        שם העסק
+        %sup
+          חובה
+      = f.text_field(:business_name)
+    .field
+      = label_tag(:complaint_business_address) do
+        כתובת העסק
+        %sup
+          חובה
+      = f.text_field(:business_address)
+    .field
+      = label_tag(:complaint_city_id) do
+        עיר\מועצה מקומית
+        %sup
+          חובה
+      -# f.collection_select(:city_id, City.all, :id, :name, :prompt => "בחר עיר")
+      = f.collection_select(:city_id, City.find(227).to_a, :id, :name)
   %fieldset
     %legend
       בעל העסק לא אוכף את איסור העישון
@@ -103,48 +130,24 @@
         .details{ "data-toggleon" => "smoking_signs_hidden_details_check" }
           = f.label(:smoking_signs_hidden_details, "פירוט:")
           = f.text_field(:smoking_signs_hidden_details)
-  %fieldset
-    %legend
-      פרטים נוספים
-    .field
-      = f.label(:smoking_comment, 'הערות')
-      = f.text_area(:smoking_comment, :size => '80x5')
-    .field
-      = f.label(:smoking_image1, 'צירוף תמונה')
-      = f.file_field(:smoking_image1)
-    .field
-      = f.label(:smoking_image2, 'צירוף תמונה')
-      = f.file_field(:smoking_image2)
-    .field
-      = f.label(:smoking_image3, 'צירוף תמונה')
-      = f.file_field(:smoking_image3)
+    %fieldset
+      %legend
+        פרטים נוספים
+      .field
+        = label_tag(:complaint_smoking_comment) do
+          הערות
+          %sup
+            חובה
+        = f.text_area(:smoking_comment, :size => '80x5')
+      .field.image-upload
+        = label_tag(:complaint_images) do
+          תמונה
+          %sup
+            ניתן לצרף מספר תמונות
+        = f.file_field(:complaint_images, :accept => 'image/*', :multiple => true)
   %fieldset{ :class => "statement" }
     %legend
       הצהרה
-    .field
-      = label_tag(:complaint_statement_full_name) do
-        שם מלא
-        %sup
-          חובה
-      = f.text_field(:statement_full_name)
-    .field
-      = label_tag(:complaint_statement_email) do
-        כתובת מייל
-        %sup
-          חובה
-      = f.text_field(:statement_email)
-    .field
-      = label_tag(:complaint_statement_id) do
-        ת.ז.
-        %sup
-          חובה
-      = f.number_field(:statement_id, :min => 100000000, :max => 999999999)
-    .field
-      = f.label(:statement_address, "כתובת")
-      = f.text_field(:statement_address)
-    .field
-      = f.label(:statement_phone, "טלפון")
-      = f.text_field(:statement_phone)
     %p
       ‫אנו ממליצים בנוסף לחתום על ההצהרה מטה. במקרים בהם תמולא ההצהרה יאפשר הדבר לעירייה לנקוט הליך‬
       ‫משפטי כנגד מפרי החוק. במקרה זה יתכן ותידרש עדות מטעם המתלונן. מילוי ההצהרה יסייע לאכוף את החוק‬
@@ -153,4 +156,45 @@
       %li
         = f.check_box(:statement_agreement)
         = f.label(:statement_agreement, "‫הנני מצהיר/ה כי אהיה מוכן/ה להעיד על נכונות הדברים המדווחים בטופס זה בבית משפט, במידה ואקרא לדיון.‬")
-  = f.submit("שלח", :class => "btn primary")
+  = f.submit("שלח", :class => "btn btn-primary")
+
+- content_for(:scripts) do
+  :javascript
+    $(function() {
+    
+      function supportsMultiple(el) {
+        return ('multiple' in el) && !!(el.multiple !== 'undefined');
+      };
+    
+      var upload = $('.image-upload'), 
+          filefield = upload.find('input:file').get(0),
+          addFileUpload = function() {
+            var attrReplace = function(index, attr) { return attr + i; },
+                clone = upload.clone();
+            
+            clone
+              .find('label').attr('for', attrReplace).end()
+              .find('input:file').attr('id', attrReplace);
+            
+            $(this).before( clone );
+            
+            i++;
+            
+            return false;
+          },
+          addFileButton,
+          count = 4,
+          i; // Index counter for the upload fields.
+      
+      if ( ! supportsMultiple(filefield) ) {
+        upload.find('sup').remove();
+        
+        while(i <= count) {
+          addFileUpload.call(upload);
+        }
+        
+        addFileButton = $('<button id="add-image-upload" class="btn btn-primary">הוספת קובץ</button>').on('click', addFileUpload);
+        
+        upload.after(addFileButton);
+      }
+    });

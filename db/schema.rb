@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120204224031) do
+ActiveRecord::Schema.define(:version => 20120207010208) do
 
   create_table "business_types", :force => true do |t|
     t.string   "name",       :null => false
@@ -24,10 +24,23 @@ ActiveRecord::Schema.define(:version => 20120204224031) do
     t.datetime "updated_at"
   end
 
+  create_table "complaint_images", :force => true do |t|
+    t.integer  "complaint_id",       :null => false
+    t.string   "image_content_type"
+    t.string   "image_file_name"
+    t.datetime "image_updated_at"
+    t.integer  "image_file_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "complaint_images", ["complaint_id"], :name => "index_complaint_images_on_complaint_id"
+
   create_table "complaint_recipients", :force => true do |t|
     t.integer "city_id",                       :null => false
     t.string  "email",                         :null => false
     t.integer "recipient_type", :default => 0, :null => false
+    t.string  "description",                   :null => false
   end
 
   add_index "complaint_recipients", ["city_id"], :name => "index_complaint_recipients_on_city_id"
@@ -63,18 +76,6 @@ ActiveRecord::Schema.define(:version => 20120204224031) do
     t.integer  "business_type_id",                                                 :null => false
     t.text     "smoking_comment"
     t.boolean  "statement_agreement",                           :default => false, :null => false
-    t.string   "smoking_image1_content_type"
-    t.string   "smoking_image1_file_name"
-    t.datetime "smoking_image1_updated_at"
-    t.integer  "smoking_image1_file_size"
-    t.string   "smoking_image2_content_type"
-    t.string   "smoking_image2_file_name"
-    t.datetime "smoking_image2_updated_at"
-    t.integer  "smoking_image2_file_size"
-    t.string   "smoking_image3_content_type"
-    t.string   "smoking_image3_file_name"
-    t.datetime "smoking_image3_updated_at"
-    t.integer  "smoking_image3_file_size"
   end
 
   add_index "complaints", ["business_type_id"], :name => "index_complaints_on_business_type_id"

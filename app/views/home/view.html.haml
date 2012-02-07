@@ -4,7 +4,7 @@
     %span
       לכבוד
       %br/
-      עריית/מועצה מקומית #{@complaint.city.name}
+      עיריית/מועצה מקומית #{@complaint.city.name}
   %h2
     הנדון:
     %em
@@ -65,17 +65,16 @@
         %li
           :plain
             השלטים מוסתרים או מוצנעים. פירוט: #{@complaint.smoking_signs_hidden_details}
-    - if @complaint.smoking_comment.present? || @complaint.smoking_image1.present? || @complaint.smoking_image2.present? || @complaint.smoking_image3.present?
+    - if @complaint.smoking_comment.present? || @complaint.complaint_images.any?
       %h3
         פרטים נוספים
-      = simple_format( @complaint.smoking_comment ) unless @complaint.smoking_comment.blank?
-      - if @complaint.smoking_image1.present?
+      = simple_format( @complaint.smoking_comment )
+      - unless @complaint.complaint_images.empty?
         %h4
           תמונות מצורפות
         .images
-          - (1..3).each do |i|
-            = link_to( image_tag( @complaint.try("smoking_image#{i}").url(:thumbnail) ), @complaint.try("smoking_image#{1}").url(:normal) ) if @complaint.try("smoking_image#{i}?")
-      
+          - @complaint.complaint_images.each do |ci|
+            = link_to( image_tag( ci.image.url(:thumbnail) ), ci.image.url(:normal) )
     #statement
       %h3
         הצהרה ופרטים אישיים

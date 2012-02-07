@@ -155,7 +155,7 @@ fieldset legend {
   }
 }
 
-.field select, .field input, .details input {
+.field select, .field input, .field textarea, .details input {
   margin-right: 15px;
 }
 
@@ -204,22 +204,6 @@ input[type="checkbox"], input[type="radio"] {
     width: auto;
 }
 
-.btn.primary {
-    background-color: darken($highlight, 10%);
-    background-repeat: repeat-x;
-    @include linear-gradient(color-stops($highlight, darken($highlight, 10%)));
-    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-    color: #fff;
-    @include text-shadow(0 -1px 0 rgba(0, 0, 0, 0.25));
-}
-
-.btn.huge {
-    border-radius: 8px 8px 8px 8px;
-    font-size: 15pt;
-    line-height: normal;
-    padding: 12px 20px;
-}
-
 input[type="button"], input[type="reset"], input[type="submit"] {
     height: auto;
     width: auto;
@@ -229,7 +213,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
     cursor: pointer;
 }
 
-.btn, a.btn {
+.btn {
   display: inline-block;
   padding: 4px 10px 4px;
   font-size: 13px;
@@ -242,9 +226,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   background-repeat: no-repeat;
   border: 1px solid #ccc;
   border-bottom-color: #bbb;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
+  @include border-radius(4px);
   @include box-shadow(inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05));
   cursor: pointer;
   *margin-left: .3em;
@@ -290,9 +272,13 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   padding: 9px 14px;
   font-size: 15px;
   line-height: normal;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  @include border-radius(5px);
+}
+.btn-huge {
+  padding: 12px 20px;
+  font-size: 15pt;
+  line-height: normal;
+  @include border-radius(8px 8px 8px 8px);
 }
 .btn-large .icon {
   margin-top: 1px;
@@ -329,15 +315,12 @@ a.btn-primay.active {
 }
 .btn-primary,
 a.btn-primary {
-  background-color: #006dcc;
-  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -ms-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
-  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-  background-image: linear-gradient(top, #0088cc, #0044cc);
+  background-color: darken($highlight, 10%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0044cc', GradientType=0);
+  @include linear-gradient(color-stops($highlight, darken($highlight, 10%)));
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  color: #fff;
+  @include text-shadow(0 -1px 0 rgba(0, 0, 0, 0.25));
   border-color: #0044cc #0044cc #002a80;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
@@ -347,10 +330,10 @@ a.btn-primary {
 .btn-primary.active,
 .btn-primary.disabled,
 .btn-primary[disabled] {
-  background-color: #0044cc;
+  background-color: darken($highlight, 10%);
 }
 .btn-primary:active, .btn-primary.active {
-  background-color: #003399 \9;
+  background-color: darken($highlight, 15%);
 }
 .btn-warning {
   background-color: #faa732;

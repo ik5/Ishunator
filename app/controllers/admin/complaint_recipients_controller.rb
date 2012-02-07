@@ -1,5 +1,6 @@
 class Admin::ComplaintRecipientsController < ApplicationController
-  respond_to(:json, :html)
+  respond_to(:html, :only => [ :index ])
+  respond_to(:json, :except => [ :index ])
   
   DEFAULT_CITY = 227
   
@@ -12,9 +13,11 @@ class Admin::ComplaintRecipientsController < ApplicationController
   def create
     recipient = ComplaintRecipient.new(params[:complaint_recipient])
     
-    saved = @complaint.save!
-    
-    respond_with(saved || @complaint.errors.full_messages, :status => (saved ? :ok : 422))
+    if recipient.valid? && recipient.save
+      respond_with(recipient, :status => :ok, :location => admin_recipients_path)
+    else
+      respond_with(recipient.errors.full_messages, :status => :unprocessable_entity, :location => nil)
+    end
   end
 
   def destroy

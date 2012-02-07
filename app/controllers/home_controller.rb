@@ -9,10 +9,13 @@ class HomeController < ApplicationController
   end
   
   def create
+    complaint_images = params[:complaint].delete(:complaint_images)
+    
     @complaint = Complaint.new(params[:complaint])
     
-    # Make sure images start at smoking_image1 and no holes exist.
-    @complaint.smoking_image1, @complaint.smoking_image2, @complaint.smoking_image3 = * [ @complaint.smoking_image1, @complaint.smoking_image2, @complaint.smoking_image3 ].delete_if { |image| ! image.present? }
+    complaint_images.each do |image|
+      @complaint.complaint_images.build({ :image => image })
+    end
     
     # Temporary change for the pilot.
     @complaint.city_id = 227

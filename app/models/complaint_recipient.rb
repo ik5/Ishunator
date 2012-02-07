@@ -3,7 +3,7 @@ require "email_validator.rb"
 class ComplaintRecipient < ActiveRecord::Base
   belongs_to(:city)
   
-  validates(:city_id, :email, :recipient_type, :presence => true)
+  validates(:city_id, :description, :email, :recipient_type, :presence => true)
   validates(:email, :email => true)
   
   class RecipientTypes
