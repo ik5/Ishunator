@@ -12,7 +12,7 @@
   %p
     :markdown
       ברצוני להביא לידיעתכם כי בתאריך *#{@complaint.event_date.strftime("%d/%m/%Y")}* ב#{@complaint.business_type_id == 7 ? @complaint.business_type.name : @complaint.business_type_other} בשם *#{@complaint.business_name}*
-      והנמצא בכתובת *#{@complaint.business_address}* אשר בשטח שיפוטכם, נצפו הפרות לכאורה של החוק המפורטות להלן:
+      והנמצא בכתובת *#{@business_details.join(' ')}* אשר בשטח שיפוטכם, נצפו הפרות לכאורה של החוק המפורטות להלן:
   - if @complaint.smoking_person || @complaint.smoking_ashtrays
     %h3
       בעל העסק לא אוכף את איסור העישון:
@@ -32,15 +32,13 @@
     %ol
       - if @complaint.smoking_room_not_seperate
         %li
-          :plain
-            אינו נמצא בחדר נפרד לחלוטין.
+          אינו נמצא בחדר נפרד לחלוטין.
       - if @complaint.smoking_room_too_large
         %li
           החדר גדול מרבע השטח הפתוח לציבור במסעדה.
       - unless @must_pass.blank?
         %li
-          :plain
-            נדרש לעבור דרכו על מנת #{@must_pass.join(", ")}.
+          נדרש לעבור דרכו על מנת #{@must_pass.join(", ")}.
       - if @complaint.smoking_room_not_closed
         %li
           הפתח המוביל אליו לא נשמר סגור (למעט בזמן כניסה ויציאה).

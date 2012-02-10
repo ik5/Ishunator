@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120207010208) do
+ActiveRecord::Schema.define(:version => 20120210170029) do
 
   create_table "business_types", :force => true do |t|
     t.string   "name",       :null => false
@@ -76,6 +76,8 @@ ActiveRecord::Schema.define(:version => 20120207010208) do
     t.integer  "business_type_id",                                                 :null => false
     t.text     "smoking_comment"
     t.boolean  "statement_agreement",                           :default => false, :null => false
+    t.string   "private_company_number"
+    t.string   "business_number"
   end
 
   add_index "complaints", ["business_type_id"], :name => "index_complaints_on_business_type_id"

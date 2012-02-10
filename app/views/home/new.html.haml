@@ -24,13 +24,19 @@
       ת.ז.
       %sup
         חובה
-    = f.number_field(:statement_id, :min => 100000000, :max => 999999999)
+    = f.text_field(:statement_id, :length => 10)
   .field
-    = f.label(:statement_address, "כתובת")
-    = f.text_field(:statement_address)
-  .field
-    = f.label(:statement_phone, "טלפון")
+    = label_tag(:complaint_statement_phone) do
+      טלפון
+      %sup
+        חובה
     = f.text_field(:statement_phone)
+  .field
+    = label_tag(:complaint_statement_address) do
+      כתובת
+      %sup.recommended
+        מומלץ
+    = f.text_field(:statement_address)
   %fieldset
     %legend
       פרטי מקרה
@@ -55,6 +61,36 @@
         כתובת העסק
         %sup
           חובה
+      = f.text_field(:business_address)
+    .field
+      = label_tag(:complaint_private_company_number) do
+        מספר <abbr title="חברה פרטית">ח.פ.</abbr>
+        %sup.recommended
+          מומלץ
+        %sup.info
+          ?
+          .popover.left
+            .arrow
+            .popover-inner
+              .popover-content
+                %p
+                  ניתן למצוא את מספר הע.מ. ומספר הח.פ. בראש טופס הקבלה
+                = image_tag('receipt.png', :alt => 'קבלה')
+      = f.text_field(:private_company_number)
+    .field
+      = label_tag(:complaint_business_number) do
+        מספר <abbr title="עוסק מורשה">ע.מ.</abbr>
+        %sup.recommended
+          מומלץ
+        %sup.info
+          ?
+          .popover.left
+            .arrow
+            .popover-inner
+              .popover-content
+                %p
+                  ניתן למצוא את מספר הע.מ. ומספר הח.פ. בראש טופס הקבלה
+                = image_tag('receipt.png', :alt => 'קבלה')
       = f.text_field(:business_address)
     .field
       = label_tag(:complaint_city_id) do
@@ -130,21 +166,23 @@
         .details{ "data-toggleon" => "smoking_signs_hidden_details_check" }
           = f.label(:smoking_signs_hidden_details, "פירוט:")
           = f.text_field(:smoking_signs_hidden_details)
-    %fieldset
-      %legend
-        פרטים נוספים
-      .field
-        = label_tag(:complaint_smoking_comment) do
-          הערות
-          %sup
-            חובה
-        = f.text_area(:smoking_comment, :size => '80x5')
-      .field.image-upload
-        = label_tag(:complaint_images) do
-          תמונה
-          %sup
-            ניתן לצרף מספר תמונות
-        = f.file_field(:complaint_images, :accept => 'image/*', :multiple => true)
+    :markdown
+      ‫במידה ומדובר במקום ציבורי אחר – קניון, חנות, מקום עבודה, אולם אירועים, קולנוע, תיאטרון וכו' – נא לפרט בסעיף ההערות האם‬ ‫קיים שילוט ([תקנות הגבלת העישון במקומות ציבוריים](http://avir-naki.com/SignsRegulations.aspx))
+  %fieldset
+    %legend
+      פרטים נוספים
+    .field
+      = label_tag(:complaint_smoking_comment) do
+        הערות
+        %sup
+          חובה
+      = f.text_area(:smoking_comment, :size => '80x5')
+    .field.image-upload
+      = label_tag(:complaint_images) do
+        תמונה
+        %sup
+          ניתן לצרף מספר תמונות
+      = f.file_field(:complaint_images, :accept => 'image/*', :multiple => true)
   %fieldset{ :class => "statement" }
     %legend
       הצהרה
@@ -155,19 +193,21 @@
     %ul.check-list
       %li
         = f.check_box(:statement_agreement)
-        = f.label(:statement_agreement, "‫הנני מצהיר/ה כי אהיה מוכן/ה להעיד על נכונות הדברים המדווחים בטופס זה בבית משפט, במידה ואקרא לדיון.‬")
+        = label_tag(:complaint_statement_agreement) do
+          ‫הנני מצהיר/ה כי אהיה מוכן/ה להעיד על נכונות הדברים המדווחים בטופס זה בבית משפט, במידה ואקרא לדיון.‬
+          %sup.recommended
+            מומלץ
   = f.submit("שלח", :class => "btn btn-primary")
 
 - content_for(:scripts) do
   :javascript
     $(function() {
     
-      function supportsMultiple(el) {
-        return ('multiple' in el) && !!(el.multiple !== 'undefined');
+      function supportsMultiple() {
+        return typeof document.createElement('input').multiple !== 'undefined';
       };
     
-      var upload = $('.image-upload'), 
-          filefield = upload.find('input:file').get(0),
+      var upload = $('.image-upload'),
           addFileUpload = function() {
             var attrReplace = function(index, attr) { return attr + i; },
                 clone = upload.clone();
@@ -186,7 +226,7 @@
           count = 4,
           i; // Index counter for the upload fields.
       
-      if ( ! supportsMultiple(filefield) ) {
+      if ( ! supportsMultiple() ) {
         upload.find('sup').remove();
         
         while(i <= count) {
