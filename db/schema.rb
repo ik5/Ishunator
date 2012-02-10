@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120210170029) do
+ActiveRecord::Schema.define(:version => 20120210204840) do
 
   create_table "business_types", :force => true do |t|
     t.string   "name",       :null => false
@@ -82,5 +82,6 @@ ActiveRecord::Schema.define(:version => 20120210170029) do
 
   add_index "complaints", ["business_type_id"], :name => "index_complaints_on_business_type_id"
   add_index "complaints", ["city_id"], :name => "index_complaints_on_city_id"
+  add_index "complaints", ["statement_id"], :name => "index_complaints_on_statement_id"
 
 end
