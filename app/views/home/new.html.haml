@@ -98,7 +98,7 @@
         %sup
           חובה
       -# f.collection_select(:city_id, City.all, :id, :name, :prompt => "בחר עיר")
-      = f.collection_select(:city_id, City.find(227).to_a, :id, :name)
+      = f.collection_select(:city_id, [ City.find(227) ], :id, :name)
   %fieldset
     %legend
       בעל העסק לא אוכף את איסור העישון
