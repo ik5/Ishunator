@@ -6,7 +6,7 @@ class ComplaintImage < ActiveRecord::Base
     :bucket => 'media.ishunator',
     :s3_credentials => {
       :access_key_id => ENV['S3_KEY'],
-      :secret_access_key => ENC['S3_SECRET']
+      :secret_access_key => ENV['S3_SECRET']
     },
     :styles => { :thumbnail => ['120x80>', :jpg], :normal => ['800x600>', :jpg],
   })
