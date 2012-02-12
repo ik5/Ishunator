@@ -3,6 +3,8 @@
 class Notifier < ActionMailer::Base
   default :from => "no-reply@ishunator.org.il"
   
+  add_template_helper(HomeHelper)
+  
   def complaint(complaint)
     
     @complaint = complaint
