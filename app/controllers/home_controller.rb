@@ -28,6 +28,7 @@ class HomeController < ApplicationController
       
       redirect_to(:action => :thankyou, :id => @complaint.id)
     else
+      logger.info(@complaint.errors.full_messages)
       render(:action => :index)
     end
   end
