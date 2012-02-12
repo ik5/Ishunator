@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module HomeHelper
   def must_pass_through(complaint)
     must_pass_through = []
