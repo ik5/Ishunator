@@ -13,7 +13,9 @@ end
 group :development do
   gem 'mysql'
   gem 'execjs'
-  require 'v8' unless RUBY_PLATFORM =~ /mswin32|32$/ || ENV['RACK_ENV'] == 'production'
+  require 'v8' unless (RUBY_PLATFORM =~ /mswin32|32$/) || ENV['RAILS_ENV'] == 'production'
+end
+
 gem 'json'
 
 # Gems used only for assets and not required
