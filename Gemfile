@@ -36,6 +36,7 @@ gem 'rdiscount'
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
+gem 'aws-sdk'
 gem 'aws-s3'
 
 # To use ActiveModel has_secure_password

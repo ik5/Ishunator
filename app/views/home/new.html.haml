@@ -180,7 +180,7 @@
     .field.image-upload
       = label_tag(:complaint_images) do
         תמונה
-        %sup
+        %sup.recommended
           ניתן לצרף מספר תמונות
       = f.file_field(:complaint_images, :accept => 'image/*', :multiple => true)
   %fieldset{ :class => "statement" }
