@@ -1,5 +1,7 @@
+# encoding: utf-8
+
 class Notifier < ActionMailer::Base
-  default :from => "no-reply@amir.com"
+  default :from => "no-reply@ishunator.org.il"
   
   def complaint(complaint)
     
