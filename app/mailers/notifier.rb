@@ -16,7 +16,7 @@ class Notifier < ActionMailer::Base
           :bcc => recipients.select { |recipient| recipient.recipient_type == ComplaintRecipient::RecipientTypes::BCC }.map(&:email),
           :subject => "תלונה בדבר עישון במקומות ציבוריים במקום #{@complaint.business_name}, #{@complaint.event_date.strftime("%d/%m/%Y")}",
           :template_path => 'home',
-          :template_name => 'view' ) if recipients
+          :template_name => 'view' ) unless recipients.empty?
 
   end
 end
