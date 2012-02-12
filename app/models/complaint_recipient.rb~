@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 require "email_validator.rb"
 
 class ComplaintRecipient < ActiveRecord::Base
