@@ -12,12 +12,11 @@ end
 
 group :development do
   gem 'mysql'
+  gem 'execjs'
+  require 'v8' unless RUBY_PLATFORM =~ /mswin32|32$/
 end
 
 gem 'json'
-
-gem 'execjs'
-require 'v8' unless RUBY_PLATFORM =~ /mswin32|32$/
 
 # Gems used only for assets and not required
 # in production environments by default.
