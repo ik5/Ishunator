@@ -24,7 +24,7 @@ class HomeController < ApplicationController
     
     if @complaint.valid? && @complaint.save
       
-      Notifier.complaint(@complaint).deliver
+      Notifier.complaint(@complaint).deliver unless @complaint.city.complaint_recipients.empty?
       
       redirect_to(:action => :thankyou, :id => @complaint.id)
     else
