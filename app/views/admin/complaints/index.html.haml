@@ -26,5 +26,5 @@
         %td= mail_to(complaint.statement_email) if complaint.statement_email
         %td= complaint.statement_phone
         %td= complaint.statement_id || '[נמחק]'
-        %td= link_to('צפייה', home_view_path(complaint))
+        %td= link_to('צפייה', complaint_path(complaint))
 = will_paginate(@complaints, :next_label => 'הבא &raquo;', :previous_label => '&laquo; הקודם')
