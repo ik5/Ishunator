@@ -26,18 +26,22 @@ class HomeController < ApplicationController
       
       Notifier.complaint(@complaint).deliver unless @complaint.city.complaint_recipients.empty?
       
-      redirect_to(:action => :thankyou, :id => @complaint.id)
+      redirect_to( thankyou_complaint_path(@complaint) )
     else
       render(:action => :new)
     end
   end
   
   def thankyou
-    @complaint = Complaint.find_by_id(params[:id]) || not_found
+    @id = params[:id]
+    
+    @complaint = Complaint.find_by_id( Hideous.bare( @id ) ) || not_found
   end
 
-  def view
-    @complaint = Complaint.joins(:city, :business_type).find_by_id(params[:id]) || not_found
+  def show
+    @id = params[:id]
+    
+    @complaint = Complaint.joins(:city, :business_type).find_by_id( Hideous.bare( @id ) ) || not_found
   end
 
 end

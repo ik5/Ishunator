@@ -8,6 +8,14 @@ class ComplaintRecipient < ActiveRecord::Base
   validates(:city_id, :description, :email, :recipient_type, :presence => true)
   validates(:email, :email => true)
   
+  def as_json(options = {})
+    return super.merge({ :recipient_type_name => self.recipient_type_name })
+  end
+  
+  def recipient_type_name
+    return RecipientTypes::Types[recipient_type]
+  end
+  
   class RecipientTypes
     TO = 0
     CC = 1

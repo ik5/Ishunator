@@ -27,4 +27,7 @@ Ishunon::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  # Shouldn't serve static assets in development due to a jquery-ujs issue.
+  config.serve_static_assets = false
 end

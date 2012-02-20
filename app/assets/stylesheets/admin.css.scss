@@ -64,10 +64,10 @@ table {
   @include border-radius(4px 0 0 0);
 }
 .table-bordered thead:last-child tr:last-child th:first-child, .table-bordered tbody:last-child tr:last-child td:first-child, .table-bordered tfoot:last-child tr:last-child th:last-child {
-  @include border-radius(0 0 0 4px);
+  @include border-radius(0 0 4px 0);
 }
 .table-bordered thead:last-child tr:last-child th:last-child, .table-bordered tbody:last-child tr:last-child td:last-child, .table-bordered tfoot:last-child tr:last-child th:first-child {
-  @include border-radius(0 0 4px 0);
+  @include border-radius(0 0 0 4px);
 }
 .table-bordered tfoot:last-child tr:last-child th:only-child {
   @include border-radius(0 0 4px 4px);
@@ -134,4 +134,56 @@ table .span12 {
   float: none;
   width: 924px;
   margin-left: 0;
+}
+
+.pagination {
+  height: 36px;
+  margin: 18px 0;
+}
+.pagination {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  margin-left: 0;
+  margin-bottom: 0;
+  @include border-radius(3px);
+  @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.05));
+}
+.pagination {
+  a, em, span {
+    background: #fff;
+    display: inline;
+    float: right;
+    padding: 0 14px;
+    line-height: 34px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-right-width: 0;
+  }
+}
+.pagination a:hover, .pagination .current {
+  background-color: $bright;
+}
+.pagination .current {
+  color: #999999;
+  cursor: default;
+}
+.pagination .disabled, .pagination .disabled:hover {
+  color: #999999;
+  cursor: default;
+}
+.pagination :first-child {
+  border-right-width: 1px;
+  @include border-radius(0 3px 3px 0);
+}
+.pagination :last-child {
+  @include border-radius(3px 0 0 3px);
+}
+.pagination-centered {
+  text-align: center;
+}
+.pagination-right {
+  text-align: right;
 }

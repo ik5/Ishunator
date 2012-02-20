@@ -1,4 +1,5 @@
-require "email_validator.rb"
+require 'email_validator.rb'
+require 'hideous.rb'
 
 class Complaint < ActiveRecord::Base
   belongs_to(:city)
@@ -11,5 +12,11 @@ class Complaint < ActiveRecord::Base
   validates(:statement_email, :email => true)
   validates(:private_company_number, :format => { :with => /^51[\d-]{7,}$/ }, :allow_blank => true)
   validates(:business_number, :format => { :with => /^[\d-]{9,}$/ }, :allow_blank => true)
+
+  self.per_page = 25
+  
+  def to_param
+    return Hideous.hide( id )
+  end
 
 end

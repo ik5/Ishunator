@@ -1,4 +1,4 @@
-class Admin::ComplaintRecipientsController < ApplicationController
+class Admin::ComplaintRecipientsController < Admin::AdminController
   respond_to(:html, :only => [ :index ])
   respond_to(:json, :except => [ :index ])
   

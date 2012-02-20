@@ -7,18 +7,18 @@ Ishunon::Application.routes.draw do
         delete '/' => 'complaint_recipients#destroy'
       end
     end
+    
+    resources :complaints, :only => [:index]
   
   end
   
-  get "home/index"
-  
-  get "home/new"
-  
-  post "home/create"
+  resources :complaints, :only => [:index, :new, :create, :show], :path => '', :controller => :home do
+    member do
+      get "thankyou" => "home#thankyou", :as => :thankyou
+    end
+  end
 
-  match "home/view/:id" => "home#view"
   
-  match "home/thankyou/:id" => "home#thankyou"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

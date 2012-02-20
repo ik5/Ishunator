@@ -68,15 +68,15 @@ header {
     padding-right: 100px;
   }
   #title a {
-    color: $highlight;
-    @include text-shadow(0 2px 0 opacify(lighten($highlight, 10%), 0.5));
+    color: lighten($highlight, 10%);
+    @include text-shadow(0 1px 0 $highlight, 0 2px 0 $highlight);
   }
   #title {
     font-size: 28pt;
     line-height: 50px;
   }
   h2 {
-    color: $foreground;
+    color: $highlight;
     font-size: 13pt;
     line-height: 20px;
   }
@@ -105,9 +105,15 @@ footer {
   }
 } 
 
-#thankyou {  
-  .thanks {
+#thankyou {    
+  big {
+    background: $highlight;
+    color: #fff;
     font-size: 17pt;
+    padding: 2px 5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    @include border-radius(3px);
+    @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
   }
 }
 
@@ -116,9 +122,10 @@ fieldset legend {
     font-size: 13pt;
 }
 
-#thankyou .thanks, fieldset legend {
+h2, h3, h4, h5, h6, fieldset legend {
   color: $highlight;
-  @include text-shadow(0 1px 0 opacify(darken($highlight, 15%), 0.5));
+  margin: 5px 0;
+  @include text-shadow(0 1px 0 transparentize(darken($highlight, 15%), 0.5));
 }
 
 .field, fieldset {
@@ -653,13 +660,15 @@ sup:hover > .popover {
 #letter {
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.6);
-  border-radius: 6px;
+  border-radius: 3px;
   @include box-shadow(0 5px 10px 0 rgba(0, 0, 0, 0.4));
   font-size: 11pt;
   padding: 10px;
   
-  h2, h3 {
+  h2, h3, h4 {
+    color: #000;
     margin: 10px 0;
+    text-shadow: none;
   }
   
   h2 {

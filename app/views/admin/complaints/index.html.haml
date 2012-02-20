@@ -1,0 +1,30 @@
+%table.table.table-bordered.table-striped.table-condensed
+  %thead
+    %tr
+      %th
+        עיריה\רשות מקומית
+      %th
+        שם העסק
+      %th
+        סוג
+      %th
+        שם מתלונן
+      %th
+        כתובת מייל
+      %th
+        טלפון
+      %th
+        ת.ז.
+      %th
+  %tbody
+    - @complaints.each do |complaint|
+      %tr
+        %td= complaint.city.name
+        %td= complaint.business_name
+        %td= complaint.business_type.name
+        %td= complaint.statement_full_name
+        %td= mail_to(complaint.statement_email) if complaint.statement_email
+        %td= complaint.statement_phone
+        %td= complaint.statement_id || '[נמחק]'
+        %td= link_to('צפייה', home_view_path(complaint))
+= will_paginate(@complaints, :next_label => 'הבא &raquo;', :previous_label => '&laquo; הקודם')

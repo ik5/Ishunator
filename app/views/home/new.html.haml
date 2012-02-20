@@ -6,7 +6,7 @@
     %ul
       - @complaint.errors.full_messages.each do |e|
         %li= e
-= form_for(@complaint, :url => { :action => :create }, :html => { :multipart => true }) do |f|
+= form_for(@complaint, :html => { :multipart => true }) do |f|
   .field
     = label_tag(:complaint_statement_full_name) do
       שם מלא

@@ -60,4 +60,18 @@
         	
         return false;
       });
+      
+      table.closest('form').on({
+        'ajax:success': function(xhr, data) {
+          var html = JST['templates/recipient_item']({ recipient: data });
+          table.find('tbody').prepend( html );
+        },
+        'ajax:error': function(event, xhr, status) {
+          var main = $('#main'),
+              html = JST['templates/errors']({ errors: $.parseJSON(xhr.responseText) });
+              
+          main.find('.error').remove();
+          main.prepend(html);
+        }
+      });
     });
