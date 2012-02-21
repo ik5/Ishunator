@@ -8,7 +8,7 @@ private
     unless session[:admin]
       success = authenticate_or_request_with_http_digest(REALM) do |username|
         env = ENV[ [REALM, username].join('_').upcase ]
-        return (Rails.development? ? 'password' : (env || false)) 
+        return (Rails.env.development? ? 'password' : (env || false)) 
       end
       
       if success
