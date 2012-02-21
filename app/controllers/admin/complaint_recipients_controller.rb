@@ -7,6 +7,8 @@ class Admin::ComplaintRecipientsController < Admin::AdminController
   def index
     @recipients = ComplaintRecipient.where(:city_id => params[:city] || DEFAULT_CITY).order('recipient_type')
     
+    @global_recipients = ComplaintRecipient.where(:city_id => nil).order('recipient_type')
+    
     respond_with(@recipients)
   end
 

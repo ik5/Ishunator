@@ -5,7 +5,7 @@ require "email_validator.rb"
 class ComplaintRecipient < ActiveRecord::Base
   belongs_to(:city)
   
-  validates(:city_id, :description, :email, :recipient_type, :presence => true)
+  validates(:description, :email, :recipient_type, :presence => true)
   validates(:email, :email => true)
   
   def as_json(options = {})

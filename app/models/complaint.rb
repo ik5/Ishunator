@@ -12,11 +12,16 @@ class Complaint < ActiveRecord::Base
   validates(:statement_email, :email => true)
   validates(:private_company_number, :format => { :with => /^51[\d-]{7,}$/ }, :allow_blank => true)
   validates(:business_number, :format => { :with => /^[\d-]{9,}$/ }, :allow_blank => true)
+  validate(:event_date_valid)
 
   self.per_page = 25
   
   def to_param
     return Hideous.hide( id )
+  end
+  
+  def event_date_valid
+    errors.add(:event_date, 'cannot be in the future') if ((DateTime.parse(event_date) > Time.now.tomorrow.to_date rescue ArgumentError) == ArgumentError)
   end
 
 end

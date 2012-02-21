@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120210204840) do
+ActiveRecord::Schema.define(:version => 20120221000809) do
 
   create_table "business_types", :force => true do |t|
     t.string   "name",       :null => false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20120210204840) do
   add_index "complaint_images", ["complaint_id"], :name => "index_complaint_images_on_complaint_id"
 
   create_table "complaint_recipients", :force => true do |t|
-    t.integer "city_id",                       :null => false
+    t.integer "city_id"
     t.string  "email",                         :null => false
     t.integer "recipient_type", :default => 0, :null => false
     t.string  "description",                   :null => false

@@ -1,6 +1,38 @@
 %h2
   רשימת נמענים
 = form_for(:complaint_recipient, :remote => true, 'data-type' => :json) do |f|
+  %h3
+    נמענים גלובליים
+  %table.table.table-bordered.table-striped.table-condensed
+    %thead
+      %tr
+        %th.span1
+          = check_box_tag(:select_all_globals, nil, nil, :class => 'select-all')
+        %th.span4
+          תיאור
+        %th.span4
+          כתובת מייל
+        %th
+          סוג
+    %tbody
+      - @global_recipients.each do |recipient|
+        %tr
+          %td.span1= check_box_tag("recipients[]", recipient.id, false, {:id => "recipients_#{recipient.id}"})
+          %td.span4= recipient.description
+          %td.span4= recipient.email
+          %td= ComplaintRecipient::RecipientTypes::Types[recipient.recipient_type]
+    %tfoot
+      %tr
+        %td= f.submit('הוספה', :class => 'btn btn-primary')
+        %td= f.text_field(:description)
+        %td= f.text_field(:email)
+        %td= f.collection_select(:recipient_type, ComplaintRecipient::RecipientTypes::Types, :first, :last)
+      %tr
+        %th{ :colspan => 4 }
+          = f.submit('מחיקה', :confirm => 'האם אתה בטוח שברצונך למחוק את הנמענים המסומנים?', :class => 'btn delete-recipients')
+= form_for(:complaint_recipient, :remote => true, 'data-type' => :json) do |f|
+  %h3
+    נמענים בעיר\ראשות מקומית
   %fieldset
     .field
       = f.label(:city_id, 'בחירת עיר\\ראשות מקומית')
@@ -10,7 +42,7 @@
     %thead
       %tr
         %th.span1
-          = check_box_tag(:select_all)
+          = check_box_tag(:select_all, nil, nil, :class => 'select-all')
         %th.span4
           תיאור
         %th.span4
@@ -32,23 +64,23 @@
         %td= f.collection_select(:recipient_type, ComplaintRecipient::RecipientTypes::Types, :first, :last)
       %tr
         %th{ :colspan => 4 }
-          = f.submit('מחיקה', :confirm => 'האם אתה בטוח שברצונך למחוק את הנמענים המסומנים?', :class => 'btn', :id => 'delete-recipients')
+          = f.submit('מחיקה', :confirm => 'האם אתה בטוח שברצונך למחוק את הנמענים המסומנים?', :class => 'btn delete-recipients')
 - content_for(:scripts) do
   :javascript
     $(function() {
-      var table = $('table');
+      var form = $('form');
       
-      $('#select_all').on('change', function() {
-        table.find('input:checkbox').prop('checked', this.checked);
-      });
-      
-      $('#city_id').on('change', function() {
+      $('#city_id', form).on('change', function() {
         // Update table.
       });
       
-      table.find('#delete-recipients').on('click', function() {
+      $('.select-all', form).on('change', function() {
+        $(this).closest('table').find('input:checkbox').prop('checked', this.checked);
+      });
+      
+      $('.delete-recipients', form).on('click', function() {
       	var self = $(this),
-      	    ids = table.find('input:checkbox:checked:not(#select_all)');
+      	    ids = self.closest('table').find('input:checkbox:checked:not(.select-all)');
         $.post(this.href, { 
         	  '_method': 'delete',
         	  id: ids.map(function() { return this.value; }).get()
@@ -61,10 +93,10 @@
         return false;
       });
       
-      table.closest('form').on({
+      form.on({
         'ajax:success': function(xhr, data) {
           var html = JST['templates/recipient_item']({ recipient: data });
-          table.find('tbody').prepend( html );
+          form.find('tbody').prepend( html );
         },
         'ajax:error': function(event, xhr, status) {
           var main = $('#main'),

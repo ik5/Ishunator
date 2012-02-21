@@ -43,7 +43,7 @@
     .field
       = f.label(:event_date, "תאריך האירוע")
       .date-select
-        = f.date_select(:event_date, :start_year => 2007, :use_month_numbers => true, :order => [:day, :month, :year])
+        = f.date_select(:event_date, :start_year => 2007, :end_year => Time.now.year, :use_month_numbers => true, :order => [:day, :month, :year])
     .field
       = f.label(:business_type_id, "סוג עסק")
       = f.collection_select(:business_type_id, BusinessType.all, :id, :name)

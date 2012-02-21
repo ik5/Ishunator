@@ -9,7 +9,9 @@ class Notifier < ActionMailer::Base
     
     @complaint = complaint
     
-    recipients = @complaint.city.complaint_recipients
+    global_recipients = ComplaintRecipients.where(:city_id => nil)
+    
+    recipients = @complaint.city.complaint_recipients.concat( global_recipients )
     
     return mail( :to => recipients.select { |recipient| recipient.recipient_type == ComplaintRecipient::RecipientTypes::TO }.map(&:email),
           :cc => recipients.select { |recipient| recipient.recipient_type == ComplaintRecipient::RecipientTypes::CC }.map(&:email),
