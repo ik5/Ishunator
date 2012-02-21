@@ -204,7 +204,9 @@
     $(function() {
     
       function supportsMultiple() {
-        return typeof document.createElement('input').multiple !== 'undefined';
+        var f = document.createElement('input'); f.type = 'file';
+        
+        return (!!(f.multiple === false) && !!(f.multiple !== 'undefined'));
       };
     
       var upload = $('.image-upload'),
