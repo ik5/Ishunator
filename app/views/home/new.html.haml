@@ -207,7 +207,7 @@
   :javascript
     $(function() {
     
-      $('.popover a').on('click', function() {
+      $('a[href^="http://"]').on('click', function() {
         window.open(this.href);
         return false;
       });

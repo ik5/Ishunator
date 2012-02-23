@@ -6,7 +6,7 @@
   = link_to("הגש דיווח", new_complaint_path, {:class => "btn btn-primary btn-huge"})
 - content_for(:scripts) do
   :javascript
-    $('a').on('click', function() {
+    $('a[href^="http://"]').on('click', function() {
       window.open(this.href);
       return false;
     });
