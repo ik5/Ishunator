@@ -8,6 +8,7 @@ he:
         greater_than_or_equal_to: "גדול או שווה ל-"
         less_than_or_equal_to: "קטן או שווה ל-"
         email: "אינה כתובת מייל"
+        cannot_be_in_the_future: "אינו יכול להיות בעתיד"
     attributes:
       complaint:
         city_id: "העיר"
@@ -17,3 +18,5 @@ he:
         business_address: "כתובת העסק"
         statement_id: "תעודת הזהות"
         statement_email: "כתובת המייל"
+        statement_full_name: "השם המלא"
+        smoking_comment: "שדה ההערה"

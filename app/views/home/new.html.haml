@@ -76,6 +76,8 @@
                 %p
                   ניתן למצוא את מספר הע.מ. ומספר הח.פ. בראש טופס הקבלה
                 = image_tag('receipt.png', :alt => 'קבלה')
+                :markdown
+                  או באמצעות [חיפוש ברשם החברות](http://www.justice.gov.il/MOJHeb/RasutHataagidim/RashamHachvarot/PeulotNefotzot/MeidaBsisi.htm)
       = f.text_field(:private_company_number)
     .field
       = label_tag(:complaint_business_number) do
@@ -91,6 +93,8 @@
                 %p
                   ניתן למצוא את מספר הע.מ. ומספר הח.פ. בראש טופס הקבלה
                 = image_tag('receipt.png', :alt => 'קבלה')
+                :markdown
+                  או באמצעות [חיפוש ברשם החברות](http://www.justice.gov.il/MOJHeb/RasutHataagidim/RashamHachvarot/PeulotNefotzot/MeidaBsisi.htm)
       = f.text_field(:business_number)
     .field
       = label_tag(:complaint_city_id) do
@@ -192,7 +196,7 @@
       ‫ביעילות רבה יותר.‬
     %ul.check-list
       %li
-        = f.check_box(:statement_agreement)
+        = f.check_box(:statement_agreement, :checked => true)
         = label_tag(:complaint_statement_agreement) do
           ‫הנני מצהיר/ה כי אהיה מוכן/ה להעיד על נכונות הדברים המדווחים בטופס זה בבית משפט, במידה ואקרא לדיון.‬
           %sup.recommended
@@ -202,6 +206,11 @@
 - content_for(:scripts) do
   :javascript
     $(function() {
+    
+      $('.popover a').on('click', function() {
+        window.open(this.href);
+        return false;
+      });
     
       function supportsMultiple() {
         var f = document.createElement('input'); f.type = 'file';

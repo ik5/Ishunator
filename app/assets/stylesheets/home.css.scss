@@ -578,6 +578,16 @@ sup:hover > .popover {
     margin: 0 0 .5em 0;
     text-align: right;
   }
+  a {
+    color: lighten($highlight, 35%);
+    
+    &:link, &:visited {
+      color: lighten($highlight, 35%);
+    }
+    &:hover {
+      color: #fff;
+    }
+  }
 }
 .lt-ie10 {
   sup.info {

@@ -21,7 +21,7 @@ class Complaint < ActiveRecord::Base
   end
   
   def event_date_valid
-    errors.add(:event_date, 'cannot be in the future') if ((DateTime.parse(event_date) > Time.now.tomorrow.to_date rescue ArgumentError) == ArgumentError)
+    errors.add(:event_date, I18n.t('activerecord.errors.messages.cannot_be_in_the_future')) if event_date > Time.now.tomorrow.to_date
   end
 
 end
