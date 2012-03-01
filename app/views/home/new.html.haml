@@ -62,6 +62,8 @@
         %sup
           חובה
       = f.text_field(:business_address)
+    :markdown
+      ניתן למצוא מספרי ח.פ. ו-ע.מ. באמצעות [חיפוש ברשם החברות](http://www.justice.gov.il/MOJHeb/RasutHataagidim/RashamHachvarot/PeulotNefotzot/MeidaBsisi.htm)
     .field
       = label_tag(:complaint_private_company_number) do
         מספר <abbr title="חברה פרטית">ח.פ.</abbr>
@@ -76,8 +78,6 @@
                 %p
                   ניתן למצוא את מספר הע.מ. ומספר הח.פ. בראש טופס הקבלה
                 = image_tag('receipt.png', :alt => 'קבלה')
-                :markdown
-                  או באמצעות [חיפוש ברשם החברות](http://www.justice.gov.il/MOJHeb/RasutHataagidim/RashamHachvarot/PeulotNefotzot/MeidaBsisi.htm)
       = f.text_field(:private_company_number)
     .field
       = label_tag(:complaint_business_number) do
@@ -93,8 +93,6 @@
                 %p
                   ניתן למצוא את מספר הע.מ. ומספר הח.פ. בראש טופס הקבלה
                 = image_tag('receipt.png', :alt => 'קבלה')
-                :markdown
-                  או באמצעות [חיפוש ברשם החברות](http://www.justice.gov.il/MOJHeb/RasutHataagidim/RashamHachvarot/PeulotNefotzot/MeidaBsisi.htm)
       = f.text_field(:business_number)
     .field
       = label_tag(:complaint_city_id) do
@@ -244,7 +242,7 @@
           addFileUpload.call(upload);
         }
         
-        addFileButton = $('<button id="add-image-upload" class="btn btn-primary">הוספת קובץ</button>').on('click', addFileUpload);
+        addFileButton = $('<button id="add-image-upload" class="btn btn-primary">הוספת קובץ נוסף</button>').on('click', addFileUpload);
         
         upload.after(addFileButton);
       }
