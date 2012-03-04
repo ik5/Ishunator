@@ -12,7 +12,10 @@ class Notifier < ActionMailer::Base
   def confirm(complaint)
     @complaint = complaint
     
-    @recipients = (ComplaintRecipient.global_recipients + @complaint.city.complaint_recipients).reject {|r| r.recipient_type == ComplaintRecipient::RecipientTypes::BCC }
+    recipients = (ComplaintRecipient.global_recipients + @complaint.city.complaint_recipients).reject {|r| r.recipient_type == ComplaintRecipient::RecipientTypes::BCC }
+    
+    @to = recipients.select { |r| r.recipient_type == ComplaintRecipient::RecipientTypes::TO }
+    @cc = recipients.select { |r| r.recipient_type == ComplaintRecipient::RecipientTypes::CC }
     
     return mail( :to => complaint.statement_email,
           :subject => "אישור תלונתך מספר #{complaint.to_param} בדבר עישון במקומות ציבוריים",
