@@ -7,7 +7,6 @@
   על מנת לאשר את התלונה, **[אנא לחץ כאן](#{confirm_complaint_url(@complaint.confirmation_token)})**.
   
   **לאחר אישור התלונה, תעודת הזהות שלך תימחק מהמערכת והתלונה תישלח לגורמים הבאים:**
-- if @recipients
-  %ul.recipients
-    - @recipients.each do |r|
-      %li= r.description
+%ul.recipients
+  - @recipients.each do |r|
+    %li= r.description
