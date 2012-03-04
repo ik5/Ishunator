@@ -23,7 +23,7 @@ class Notifier < ActionMailer::Base
           :cc => cc,
           :bcc => bcc,
           :subject => "תלונה בדבר עישון במקומות ציבוריים במקום #{@complaint.business_name}, #{@complaint.event_date.strftime("%d/%m/%Y")}",
-          :template_path => 'home',
+          :template_path => 'mailer',
           :template_name => 'show' )
 
   end
