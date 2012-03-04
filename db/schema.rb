@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120221000809) do
+ActiveRecord::Schema.define(:version => 20120304150315) do
 
   create_table "business_types", :force => true do |t|
     t.string   "name",       :null => false
@@ -78,10 +78,13 @@ ActiveRecord::Schema.define(:version => 20120221000809) do
     t.boolean  "statement_agreement",                           :default => false, :null => false
     t.string   "private_company_number"
     t.string   "business_number"
+    t.boolean  "confirmed",                                     :default => false, :null => false
+    t.string   "confirmation_token",                                               :null => false
   end
 
   add_index "complaints", ["business_type_id"], :name => "index_complaints_on_business_type_id"
   add_index "complaints", ["city_id"], :name => "index_complaints_on_city_id"
+  add_index "complaints", ["confirmation_token"], :name => "index_complaints_on_confirmation_token", :unique => true
   add_index "complaints", ["statement_id"], :name => "index_complaints_on_statement_id"
 
 end

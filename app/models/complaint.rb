@@ -7,17 +7,31 @@ class Complaint < ActiveRecord::Base
   
   has_many(:complaint_images)
   
-  validates(:statement_email, :statement_full_name, :statement_id, :city_id, :event_date, :business_type, :business_name, :business_address, :smoking_comment, :presence => true)
+  validates(:statement_email, :statement_full_name, :statement_id, :city_id, :event_date, :business_type, :business_name, :business_address, :smoking_comment, :confirmation_token, :presence => true)
   validates(:statement_id, :format => { :with => /^\d{9,10}$/ })
   validates(:statement_email, :email => true)
   validates(:private_company_number, :format => { :with => /^51[\d-]{7,}$/ }, :allow_blank => true)
   validates(:business_number, :format => { :with => /^[\d-]{9,}$/ }, :allow_blank => true)
+  validates(:confirmation_token, :uniqueness => true)
   validate(:event_date_valid)
 
   self.per_page = 25
   
   after_create do
-    Notifier.complaint(self).deliver unless self.city.complaint_recipients.empty? && ComplaintRecipient.global_recipients.empty?
+    Notifier.confirm(self).deliver
+  end
+  
+  before_validation do
+    # Set a confirmation token before sending a confirmation e-mail to the user.
+    self.confirmation_token = rand(36**16).to_s(36)
+  end
+  
+  def confirm
+    unless self.confirmed
+      update_attributes( :confirmed => true, :statement_id => nil )
+      
+      Notifier.complaint(self).deliver unless self.city.complaint_recipients.empty? && ComplaintRecipient.global_recipients.empty?
+    end
   end
   
   def to_param

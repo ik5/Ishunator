@@ -38,6 +38,16 @@ class HomeController < ApplicationController
     
     @complaint = Complaint.find_by_id( Hideous.bare( @id ) ) || not_found
   end
+  
+  def confirm
+    confirmation_token = params[:confirmation_token]
+    
+    @complaint = Complaint.find_by_confirmation_token(confirmation_token) || not_found
+    
+    @complaint.confirm
+    
+    @recipients = ComplaintRecipient.global_recipients.concat( @complaint.city.complaint_recipients )
+  end
 
   def show
     @id = params[:id]

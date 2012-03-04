@@ -1,0 +1,14 @@
+#thankyou
+  :markdown
+    ## תודה! ##
+    תלונתך מספר <big>#{@complaint.to_param}</big> אושרה.
+    
+    **תעודת הזהות שלך נמחקה מהמערכת והתלונה תישלח לגורמים הבאים:**
+  - if @recipients    
+    %ul.recipients
+    - @recipients.reject {|r| r.recipient_type == ComplaintRecipient::RecipientTypes::BCC }.each do |r|
+      %li= r.description
+
+  :markdown
+    [לחצ/י כאן על מנת לראות את תדפיס המכתב שיישלח](#{complaint_path(@complaint)})  
+    [להורדת המכתב כקובץ PDF](http://www.google.com)

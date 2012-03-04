@@ -17,6 +17,8 @@ Ishunon::Application.routes.draw do
       get "thankyou" => "home#thankyou", :as => :thankyou
     end
   end
+  
+  match 'confirm/:confirmation_token' => 'home#confirm', :as => :confirm_complaint
 
   
 
