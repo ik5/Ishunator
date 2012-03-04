@@ -28,9 +28,9 @@ class Complaint < ActiveRecord::Base
   
   def confirm
     unless self.confirmed
-      update_attributes( :confirmed => true, :statement_id => nil )
-      
       Notifier.complaint(self).deliver unless self.city.complaint_recipients.empty? && ComplaintRecipient.global_recipients.empty?
+      
+      update_attributes( :confirmed => true, :statement_id => nil )
     end
   end
   

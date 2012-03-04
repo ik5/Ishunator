@@ -9,10 +9,21 @@
     הנדון:
     %em
       תלונה בדבר הפרת חוק מניעת העישון במקומות ציבוריים והחשיפה לעישון התשמ"ג-1983
-  %p
+  #statement
     :markdown
-      ברצוני להביא לידיעתכם כי בתאריך ***#{@complaint.event_date.strftime("%d/%m/%Y")}*** ב#{@complaint.business_type_id == 7 ? @complaint.business_type_other : @complaint.business_type.name} בשם ***#{@complaint.business_name}***
-      והנמצא בכתובת ***#{business_details(@complaint)}*** אשר בשטח שיפוטכם, נצפו הפרות לכאורה של החוק המפורטות להלן:
+      ### הצהרה ופרטים אישיים ###
+      **שם מלא:** #{@complaint.statement_full_name}  
+      **כתובת מייל:** #{@complaint.statement_email}  
+      **ת.ז:** #{@complaint.statement_id}  
+      **כתובת:** #{@complaint.statement_address}  
+      **טלפון:** #{@complaint.statement_phone}  
+      **תאריך:** #{@complaint.created_at.strftime("%d/%m/%Y")}
+    - if @complaint.statement_agreement
+      :markdown
+          **הנני מצהיר/ה כי אהיה מוכן/ה להעיד על נכונות הדברים המדווחים בטופס זה בבית משפט, במידה ואקרא לדיון.**
+  :markdown
+    ברצוני להביא לידיעתכם כי בתאריך ***#{@complaint.event_date.strftime("%d/%m/%Y")}*** ב#{@complaint.business_type_id == 7 ? @complaint.business_type_other : @complaint.business_type.name} בשם ***#{@complaint.business_name}***
+    והנמצא בכתובת ***#{business_details(@complaint)}*** אשר בשטח שיפוטכם, נצפו הפרות לכאורה של החוק המפורטות להלן:
   - if @complaint.smoking_person || @complaint.smoking_ashtrays
     %h3
       בעל העסק לא אוכף את איסור העישון:
@@ -74,17 +85,3 @@
         .images
           - @complaint.complaint_images.each do |ci|
             = link_to( image_tag( ci.image.url(:thumbnail) ), ci.image.url(:normal) )
-  #statement
-    %h3
-      הצהרה ופרטים אישיים
-    :markdown
-      **שם מלא:** #{@complaint.statement_full_name}  
-      **כתובת מייל:** #{@complaint.statement_email}  
-      **ת.ז:** #{@complaint.statement_id}  
-      **כתובת:** #{@complaint.statement_address}  
-      **טלפון:** #{@complaint.statement_phone}  
-      **תאריך:** #{@complaint.created_at.strftime("%d/%m/%Y")}
-    - if @complaint.statement_agreement
-      %p
-        %strong
-          הנני מצהיר/ה כי אהיה מוכן/ה להעיד על נכונות הדברים המדווחים בטופס זה בבית משפט, במידה ואקרא לדיון.
