@@ -9,6 +9,7 @@ he:
         less_than_or_equal_to: "קטן או שווה ל-"
         email: "אינה כתובת מייל"
         cannot_be_in_the_future: "אינו יכול להיות בעתיד"
+        invalid: "אינה תקינה"
     attributes:
       complaint:
         city_id: "העיר"

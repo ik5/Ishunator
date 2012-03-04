@@ -11,7 +11,7 @@ class Notifier < ActionMailer::Base
     
     @complaint = complaint
     
-    global_recipients = ComplaintRecipients.global_recipients
+    global_recipients = ComplaintRecipient.global_recipients
     
     recipients = @complaint.city.complaint_recipients.concat( global_recipients )
     
