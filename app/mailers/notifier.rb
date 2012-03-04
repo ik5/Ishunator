@@ -13,7 +13,7 @@ class Notifier < ActionMailer::Base
     
     global_recipients = ComplaintRecipient.global_recipients
     
-    recipients = @complaint.city.complaint_recipients.concat( global_recipients ).flatten
+    recipients = global_recipients.concat( @complaint.city.complaint_recipients )
     
     to = recipients.select { |r| r.recipient_type == ComplaintRecipient::RecipientTypes::TO }.map(&:email)
     cc = recipients.select { |r| r.recipient_type == ComplaintRecipient::RecipientTypes::CC }.map(&:email)
