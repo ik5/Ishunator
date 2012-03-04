@@ -3,7 +3,7 @@
 class Notifier < ActionMailer::Base
   default :from => "no-reply@avir-naki.com"
   
-  default_url_options[:host] = 'http://furious-window-9057.herokuapp.com/'
+  default_url_options[:host] = 'http://furious-window-9057.herokuapp.com'
   
   layout 'mail'
   
