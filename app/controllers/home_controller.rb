@@ -46,7 +46,7 @@ class HomeController < ApplicationController
     
     @complaint.confirm
     
-    @recipients = ComplaintRecipient.global_recipients.concat( @complaint.city.complaint_recipients )
+    @recipients = (ComplaintRecipient.global_recipients + @complaint.city.complaint_recipients).reject {|r| r.recipient_type == ComplaintRecipient::RecipientTypes::BCC }
   end
 
   def show

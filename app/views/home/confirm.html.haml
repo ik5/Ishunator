@@ -6,7 +6,7 @@
     **תעודת הזהות שלך נמחקה מהמערכת והתלונה תישלח לגורמים הבאים:**
   - if @recipients    
     %ul.recipients
-    - @recipients.reject {|r| r.recipient_type == ComplaintRecipient::RecipientTypes::BCC }.each do |r|
+    - @recipients.each do |r|
       %li= r.description
 
   :markdown
