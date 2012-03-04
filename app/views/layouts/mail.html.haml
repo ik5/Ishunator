@@ -5,7 +5,7 @@
     %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
     %title
       מטהר אוויר - טופס דיווח מקוון על עישון במקומות ציבוריים
-    :css
+    :sass
       article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
       audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
       audio:not([controls]) { display: none; }
@@ -77,6 +77,72 @@
         @page { margin: 0.5cm; }
         p, h2, h3 { orphans: 3; widows: 3; }
         h2, h3 { page-break-after: avoid; }
+      }
+      
+      #letter {        
+        h2, h3, h4 {
+          color: #000;
+          margin: 10px 0;
+        }
+        
+        h2 {
+          font-size: 120%;
+        }
+        
+        h3 {
+          font-size: 100%;
+        }
+        
+        p {
+          margin: 5px 0;
+        }
+        
+        ol {
+          list-style-type: decimal;
+          padding-right: 23px;
+        }
+        
+        em {
+          font-style: normal;
+          font-weight: bold;
+        }
+        
+        .date {
+          float: left;
+        }
+        
+        #statement {
+          border: 1px solid #000;
+          margin-top: 10px;
+          padding: 10px;
+        
+          h3 {
+            margin-top: 0;
+          }
+          dl {
+            overflow: hidden;
+          }
+          dt.first {
+            clear: right;
+          }
+          dd, dt {
+            float: right;
+            margin: 0 0 0 10px;
+            min-height: 1em;
+            width: 130px;
+          }
+          dt {
+            border-top: 1px solid #000;
+            font-weight: bold;
+            margin-top: 10px;
+          }
+          dd.email, dt.email {
+            width: 160px;
+          }
+          dd.id, dt.id {
+            width: 100px;
+          }
+        }
       }
   %body
     #container
