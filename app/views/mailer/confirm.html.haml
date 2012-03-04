@@ -2,12 +2,12 @@
   שלום רב,  
   קיבלנו את תלונתך בדבר עישון במקומות ציבוריים במקום ***#{@complaint.business_name}*** מיום ***#{@complaint.event_date.strftime("%d/%m/%Y")}***.
   
-  מספר התלונה במערכת: [<big style="background: #b22222; color: #fff; font-size: 17pt; padding: 2px 5px;">#{@complaint.to_param}</big>](#{complaint_path(@complaint)})
+  מספר התלונה במערכת: [<big style="background: #b22222; color: #fff; font-size: 17pt; padding: 2px 5px;">#{@complaint.to_param}</big>](#{complaint_url(@complaint)})
   
-  [על מנת לאשר את התלונה, (אנא לחץ כאן](confirm_complaint_path(@complaint.confirmation_token)).
+  על מנת לאשר את התלונה, [אנא לחץ כאן](confirm_complaint_url(@complaint.confirmation_token)).
   
   **לאחר אישור התלונה, תעודת הזהות שלך תימחק מהמערכת והתלונה תישלח לגורמים הבאים:**
 - if @recipients
   %ul.recipients
-    - @recipients.reject {|r| r.recipient_type == ComplaintRecipient::RecipientTypes::BCC }.each do |r|
+    - @recipients.each do |r|
       %li= r.description
