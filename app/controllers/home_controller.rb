@@ -24,7 +24,8 @@ class HomeController < ApplicationController
     
     if @complaint.valid? && @complaint.save
       
-      Notifier.complaint(@complaint).deliver unless @complaint.city.complaint_recipients.empty?
+      # Moved to model.
+      #Notifier.complaint(@complaint).deliver unless @complaint.city.complaint_recipients.empty?
       
       redirect_to( thankyou_complaint_path(@complaint) )
     else

@@ -1,7 +1,9 @@
 # encoding: utf-8
 
 class Notifier < ActionMailer::Base
-  default :from => "no-reply@ishunator.org.il"
+  default :from => "no-reply@avir-naki.com"
+  
+  layout :mail
   
   add_template_helper(HomeHelper)
   
@@ -9,7 +11,7 @@ class Notifier < ActionMailer::Base
     
     @complaint = complaint
     
-    global_recipients = ComplaintRecipients.where(:city_id => nil)
+    global_recipients = ComplaintRecipients.global_recipients
     
     recipients = @complaint.city.complaint_recipients.concat( global_recipients )
     
