@@ -12,8 +12,6 @@ class Notifier < ActionMailer::Base
   def confirm(complaint)
     @complaint = complaint
     
-    @recipients = ComplaintRecipient.global_recipients.concat(@complaint.city.complaint_recipients)
-    
     return mail( :to => complaint.statement_email,
           :subject => "אישור תלונתך מספר #{complaint.to_param} בדבר עישון במקומות ציבוריים",
           :template_path => 'mailer',
