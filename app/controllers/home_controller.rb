@@ -44,7 +44,7 @@ class HomeController < ApplicationController
     
     @complaint = Complaint.find_by_confirmation_token(confirmation_token) || not_found
     
-    unless @complaint.cofirmed
+    unless @complaint.confirmed
       
       @complaint.confirm
     
