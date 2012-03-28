@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'aws/s3'
+
 class Notifier < ActionMailer::Base
   default :from => "no-reply@avir-naki.com"
   
