@@ -8,7 +8,5 @@
   
   **לאחר אישור התלונה, תעודת הזהות שלך תימחק מהמערכת והתלונה תישלח לגורמים הבאים:**
 %ul.recipients
-  - @to.each do |r|
-    %li= r.description
-  - @cc.each do |r|
+  - @recipients.each do |r|
     %li= r.description

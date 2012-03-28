@@ -8,6 +8,12 @@ GIT
       sass (~> 3.1)
 
 GIT
+  remote: git://github.com/mileszs/wicked_pdf.git
+  revision: 24b886096d52247a7d33f61cb186f81c899ef1de
+  specs:
+    wicked_pdf (0.7.7)
+
+GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: 5d4ba628dedc90cb035c874f0479985b7dc767a1
   specs:
@@ -165,4 +171,5 @@ DEPENDENCIES
   rdiscount
   sass-rails (~> 3.1.4)
   uglifier (>= 1.0.3)
+  wicked_pdf!
   will_paginate

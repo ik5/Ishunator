@@ -43,6 +43,8 @@ gem 'ejs'
 
 gem 'will_paginate'
 
+gem 'wicked_pdf', :git => 'git://github.com/mileszs/wicked_pdf.git'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

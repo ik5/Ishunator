@@ -30,4 +30,8 @@ Ishunon::Application.configure do
   
   # Shouldn't serve static assets in development due to a jquery-ujs issue.
   config.serve_static_assets = false
+  
+  config.after_initialize do
+    WICKED_PDF[:exe_path] = "/usr/local/bin/wkhtmltopdf"
+  end
 end

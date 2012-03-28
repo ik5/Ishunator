@@ -44,7 +44,11 @@ class HomeController < ApplicationController
     
     @complaint = Complaint.find_by_confirmation_token(confirmation_token) || not_found
     
-    @complaint.confirm
+    unless @complaint.cofirmed
+      
+      @complaint.confirm
+    
+    end
     
     @recipients = (ComplaintRecipient.global_recipients + @complaint.city.complaint_recipients).reject {|r| r.recipient_type == ComplaintRecipient::RecipientTypes::BCC }
   end
