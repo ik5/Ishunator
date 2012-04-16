@@ -32,7 +32,7 @@ class Notifier < ActionMailer::Base
     
     filename = "complaint_#{complaint.id}.pdf"
     
-    attachments.inline[filename] = generate_pdf(filename)
+    attachments[filename] = generate_pdf(filename)
     
     @pdf_url = ""
     
@@ -50,7 +50,7 @@ private
     
     pdf = render_to_string(:pdf => filename, :template => 'mailer/show.html.haml') 
     
-    return pdf
+    return WickedPdf.new.pdf_from_string(pdf)
     
   end
 end
