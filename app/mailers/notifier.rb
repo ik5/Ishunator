@@ -32,9 +32,9 @@ class Notifier < ActionMailer::Base
     
     filename = "complaint_#{complaint.id}.pdf"
     
-    attachments[filename] = generate_pdf(filename)
+    attachments.inline[filename] = generate_pdf(filename)
     
-    @pdf_url = get_pdf_url(filename) # Set the url here so it doesn't show up in the generated pdf.
+    @pdf_url = ""
     
     return mail( :to => to,
           :cc => cc,
@@ -50,17 +50,7 @@ private
     
     pdf = render_to_string(:pdf => filename, :template => 'mailer/show.html.haml') 
     
-    AWS::S3::Base.establish_connection!(:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET'])
-    
-    AWS::S3::S3Object.store(filename, pdf, 'media.ishunator', :content_type => 'application/pdf', :access => :public_read)
-    
     return pdf
     
-  end
-  
-  def get_pdf_url(filename)
-    AWS::S3::Base.establish_connection!(:access_key_id => ENV['S3_KEY'], :secret_access_key => ENV['S3_SECRET'])
-    
-    return AWS::S3::S3Object.url_for(filename, 'media.ishunator')
   end
 end
