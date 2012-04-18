@@ -30,11 +30,9 @@ class Notifier < ActionMailer::Base
     cc = recipients.select { |r| r.recipient_type == ComplaintRecipient::RecipientTypes::CC }.map(&:email)
     bcc = recipients.select { |r| r.recipient_type == ComplaintRecipient::RecipientTypes::BCC }.map(&:email)
     
-    filename = "complaint_#{complaint.id}.pdf"
+    filename = "complaint_#{complaint.to_param}.pdf"
     
     attachments[filename] = generate_pdf(filename)
-    
-    @pdf_url = ""
     
     return mail( :to => to,
           :cc => cc,
@@ -48,7 +46,7 @@ class Notifier < ActionMailer::Base
 private
   def generate_pdf(filename)
     
-    pdf = render_to_string(:pdf => filename, :template => 'mailer/show.html.haml') 
+    pdf = render_to_string(:pdf => filename, :template => 'home/show.html.haml', :layout => 'pdf.html.haml', :encoding => 'UTF-8') 
     
     return WickedPdf.new.pdf_from_string(pdf)
     

@@ -5,6 +5,8 @@
       לכבוד
       %br/
       עיריית/מועצה מקומית #{@complaint.city.name}
+      %br/
+      משרד הבריאות
   %h2
     הנדון:
     %em
@@ -85,5 +87,4 @@
         .images
           - @complaint.complaint_images.each do |ci|
             = link_to( image_tag( ci.image.url(:thumbnail) ), ci.image.url(:normal) )
-      - if @pdf_url
-        = link_to( 'ניתן להוריד עותק של התלונה כקובץ PDF כאן.', @pdf_url )
+      = link_to( 'ניתן להוריד עותק של התלונה כקובץ PDF כאן.', complaint_path(@complaint, :format => :pdf) )

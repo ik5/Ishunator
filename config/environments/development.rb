@@ -32,6 +32,6 @@ Ishunon::Application.configure do
   config.serve_static_assets = false
   
   config.after_initialize do
-    WICKED_PDF[:exe_path] = "/usr/local/bin/wkhtmltopdf"
+    WickedPdf.config[:exe_path] = "/usr/bin/wkhtmltopdf"
   end
 end

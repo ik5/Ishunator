@@ -2,6 +2,8 @@
 
 class HomeController < ApplicationController
   
+  respond_to(:pdf, :html, :only => :show)
+  
   def index
     
   end
@@ -57,6 +59,16 @@ class HomeController < ApplicationController
     @id = params[:id]
     
     @complaint = Complaint.joins(:city, :business_type).find_by_id( Hideous.bare( @id ) ) || not_found
+    
+    respond_with(@complaint) do |format|
+      format.pdf do
+        filename = "complaint_#{@complaint.to_param}.pdf"
+        
+        pdf = render_to_string(:pdf => filename, :template => 'home/show.html.haml', :layout => 'pdf.html.haml', :encoding => 'UTF-8') 
+    
+        send_data(pdf, :filename => filename, :type => :pdf)
+      end
+    end
   end
 
 end
