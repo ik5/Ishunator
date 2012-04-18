@@ -87,4 +87,4 @@
         .images
           - @complaint.complaint_images.each do |ci|
             = link_to( image_tag( ci.image.url(:thumbnail) ), ci.image.url(:normal) )
-      = link_to( 'ניתן להוריד עותק של התלונה כקובץ PDF כאן.', complaint_path(@complaint, :format => :pdf) )
+      = link_to( 'ניתן להוריד עותק של התלונה כקובץ PDF כאן.', complaint_url(@complaint, :format => :pdf) )

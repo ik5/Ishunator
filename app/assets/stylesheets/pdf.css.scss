@@ -1,6 +1,8 @@
 body {
   direction: rtl;
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  line-height: 18px;
   text-align: right;
 }
 
@@ -41,6 +43,7 @@ em {
   border: 1px solid #000;
   margin-top: 10px;
   padding: 10px;
+  font-size: 9pt;
 
   h3 {
     margin-top: 0;
@@ -55,7 +58,7 @@ em {
     float: right;
     margin: 0 0 0 10px;
     min-height: 1em;
-    width: 130px;
+    width: 100px;
   }
   dt {
     border-top: 1px solid #000;
@@ -63,9 +66,9 @@ em {
     margin-top: 10px;
   }
   dd.email, dt.email {
-    width: 160px;
+    width: 130px;
   }
   dd.id, dt.id {
-    width: 100px;
+    width: 90px;
   }
 }
