@@ -6,15 +6,18 @@ class Admin::AdminController < ApplicationController
 private
   def authenticate
     unless session[:admin]
-      success = authenticate_or_request_with_http_digest(REALM) do |username|
-        env = ENV[ [REALM, username].join('_').upcase ]
-        return (Rails.env.development? ? 'password' : (env || false)) 
+      success = authenticate_with_http_basic do |username, password|
+          env = ENV[ [REALM, username].join('_').upcase ]
+          compare = Rails.env.development? ? 'password' : (env || false)
+          
+          return password if compare == password
       end
       
       if success
-        return (session[:admin] = true)
+        session[:admin] = true
+        return true
       else
-        redirect_to(root_path)
+        request_http_basic_authentication
       end
     end
   end
