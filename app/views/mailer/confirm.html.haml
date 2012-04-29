@@ -10,3 +10,6 @@
 %ul.recipients
   - ComplaintRecipient.global_recipients.concat( @complaint.city.complaint_recipients ).each do |r|
     %li= r.description
+
+%p
+  למייל זה מצורפת התלונה כקובץ PDF.

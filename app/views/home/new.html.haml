@@ -47,7 +47,7 @@
     .field
       = f.label(:business_type_id, "סוג עסק")
       = f.collection_select(:business_type_id, BusinessType.all, :id, :name)
-      .details{ "data-toggleon" => "complaint_business_type_id", "data-togglevalue" => 7}
+      .details{ "data-toggleon" => "complaint_business_type_id", "data-togglevalue" => 13}
         = f.label(:business_type_other, "פירוט:")
         = f.text_field(:business_type_other)
     .field

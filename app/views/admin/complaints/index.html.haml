@@ -16,6 +16,9 @@
       %th
         ת.ז.
       %th
+        תאריך
+      %th
+      %th
   %tbody
     - @complaints.each do |complaint|
       %tr
@@ -26,5 +29,7 @@
         %td= mail_to(complaint.statement_email) if complaint.statement_email
         %td= complaint.statement_phone
         %td= complaint.statement_id || '[נמחק]'
+        %td= complaint.created_at.strftime("%d/%m/%Y")
         %td= link_to('צפייה', complaint_path(complaint))
+        %td= link_to('pdf', complaint_path(complaint, :format => :pdf))
 = will_paginate(@complaints, :next_label => 'הבא &raquo;', :previous_label => '&laquo; הקודם')

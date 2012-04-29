@@ -11,8 +11,8 @@
     %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
     %title
       מטהר אוויר - טופס דיווח מקוון על עישון במקומות ציבוריים
-    %meta{:content => "", :name => "description"}
-    %meta{:content => "", :name => "author"}
+    %meta{:content => "טופס דיווח מקוון על עישון במקומות ציבוריים", :name => "description"}
+    %meta{:content => "עמותת אוויר נקי", :name => "author"}
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
@@ -21,6 +21,7 @@
     #container
       %header
         %hgroup
+          = link_to(image_tag('avirnaki.png', :alt => 'אוויר נקי'), 'http://www.avir-naki.com', :class => 'avirnaki')
           %h1#title
             %a{ :href => "/" }
               מטהר אוויר
@@ -32,8 +33,11 @@
     %footer
       %ul
         %li
-          %a{ :href => "https://github.com/GeReV/Ishunator" }
-            קוד מקור
+          = link_to('אתר עמותת אוויר-נקי', 'http://www.avir-naki.com')
+        %li.sep
+          |
+        %li
+          = link_to('עמותת אוויר-נקי בפייסבוק', 'http://www.facebook.com/Amutat.Avir.Naki')
     / ! end of #container
     = content_for(:scripts)
     :javascript

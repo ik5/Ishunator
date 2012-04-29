@@ -11,6 +11,32 @@
     הנדון:
     %em
       תלונה בדבר הפרת חוק מניעת העישון במקומות ציבוריים והחשיפה לעישון התשמ"ג-1983
+  #statement
+    %h3
+      הצהרה ופרטים אישיים
+    %dl
+      %dd= @complaint.statement_full_name
+      %dd.email= @complaint.statement_email
+      %dd.id= @complaint.statement_id
+      %dd= @complaint.statement_address
+      %dd= @complaint.statement_phone
+      %dd.last= @complaint.created_at.strftime("%d/%m/%Y")
+      %dt.first
+        שם מלא
+      %dt.email
+        כתובת מייל
+      %dt.id
+        ת.ז.
+      %dt
+        כתובת
+      %dt
+        טלפון
+      %dt
+        תאריך
+    - if @complaint.statement_agreement
+      %p
+        %strong
+          הנני מצהיר/ה כי אהיה מוכן/ה להעיד על נכונות הדברים המדווחים בטופס זה בבית משפט, במידה ואקרא לדיון.
   %p
     :markdown
       ברצוני להביא לידיעתכם כי בתאריך *#{@complaint.event_date.strftime("%d/%m/%Y")}* ב#{@complaint.business_type_id == 7 ? @complaint.business_type_other : @complaint.business_type.name} בשם *#{@complaint.business_name}*
@@ -76,29 +102,3 @@
         .images
           - @complaint.complaint_images.each do |ci|
             = link_to( image_tag( ci.image.url(:thumbnail) ), ci.image.url(:normal) )
-  #statement
-    %h3
-      הצהרה ופרטים אישיים
-    %dl
-      %dd= @complaint.statement_full_name
-      %dd.email= @complaint.statement_email
-      %dd.id= @complaint.statement_id
-      %dd= @complaint.statement_address
-      %dd= @complaint.statement_phone
-      %dd.last= @complaint.created_at.strftime("%d/%m/%Y")
-      %dt.first
-        שם מלא
-      %dt.email
-        כתובת מייל
-      %dt.id
-        ת.ז.
-      %dt
-        כתובת
-      %dt
-        טלפון
-      %dt
-        תאריך
-    - if @complaint.statement_agreement
-      %p
-        %strong
-          הנני מצהיר/ה כי אהיה מוכן/ה להעיד על נכונות הדברים המדווחים בטופס זה בבית משפט, במידה ואקרא לדיון.
