@@ -250,7 +250,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   text-align: center;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
   background-color: #fafafa;
-  @include linear-gradient(color-stops(#fff, #fff 25%, #E6E6E6), top);
+//  @include background-image(linear-gradient(color-stops(#fff, #fff 25%, #E6E6E6), top));
   background-repeat: no-repeat;
   border: 1px solid #ccc;
   border-bottom-color: #bbb;
@@ -343,7 +343,7 @@ a.btn-primary {
 .btn-primary {
   background-color: darken($highlight, 10%);
   background-repeat: repeat-x;
-  @include linear-gradient(color-stops($highlight, darken($highlight, 10%)));
+  @include background-image(linear-gradient(color-stops($highlight, darken($highlight, 10%))));
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   color: #fff;
   @include text-shadow(0 -1px 0 rgba(0, 0, 0, 0.25));
@@ -766,7 +766,7 @@ sup:hover > .popover {
 }
 .alert-message {
     background-color: #EEDC94;
-    @include linear-gradient(color-stops(#FCEEC1, #EEDC94), top);
+//    @include background-image(linear-gradient(color-stops(#FCEEC1, #EEDC94), top));
     background-repeat: repeat-x;
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
     border-radius: 4px 4px 4px 4px;
