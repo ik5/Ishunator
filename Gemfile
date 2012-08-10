@@ -13,7 +13,7 @@ end
 group :development do
   gem 'mysql'
   gem 'execjs'
-  gem 'libv8', :require =>'v8' unless (RUBY_PLATFORM =~ /mswin32|32$/) || ENV['RAILS_ENV'] == 'production'
+  #gem 'libv8', :require =>'v8' unless (RUBY_PLATFORM =~ /mswin32|32$/) || ENV['RAILS_ENV'] == 'production'
 end
 
 gem 'json'
@@ -22,15 +22,17 @@ gem 'json'
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.1.4'
+  gem 'sass'
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'compass', :git => 'git://github.com/chriseppstein/compass'
+  gem 'compass-rails'
 end
 
 gem 'jquery-rails'
 
 gem 'haml'
 
-gem 'compass', :git => 'git://github.com/chriseppstein/compass'
 
 gem 'rdiscount'
 
