@@ -8,10 +8,10 @@ class Complaint < ActiveRecord::Base
   has_many(:complaint_images)
 
   validates(:statement_email, :statement_full_name, :statement_id, :city_id, :event_date, :business_type, :business_name, :business_address, :smoking_comment, :confirmation_token, :presence => true)
-  #validates(validates_israeli_id, :format => { :with => /^\d{9,10}$/ })
-  validates_israeli_id :validates_israeli_id
+  #validates(:statement_id, :format => { :with => /^\d{9,10}$/ })
+  validates_israeli_id :statement_id
   validates(:statement_email, :email => true)
-  validates(:private_company_number, :format => { :with => /^51[\d-]{7,}$/ }, :allow_blank => true)
+  validates(:private_company_number, :format => { :with => /^5[12][\d-]{7,}$/ }, :allow_blank => true)
   validates(:business_number, :format => { :with => /^[\d-]{9,}$/ }, :allow_blank => true)
   validates(:confirmation_token, :uniqueness => true)
   validate(:event_date_valid)
@@ -29,7 +29,7 @@ class Complaint < ActiveRecord::Base
 
   def confirm
     unless self.confirmed
-      Notifier.complaint(self).deliver unless self.city.complaint_recipients.empty? && ComplaintRecipient.global_recipients.empty?
+      #Notifier.complaint(self).deliver unless self.city.complaint_recipients.empty? && ComplaintRecipient.global_recipients.empty?
 
       update_attributes( :confirmed => true, :statement_id => nil )
     end
