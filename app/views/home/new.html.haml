@@ -2,73 +2,74 @@
   = div_for(@complaint, :class => "alert-message block-message error") do
     %p
       %strong
-        הטופס שהוזן אינו תקין:
+        = t('new.form_error')
     %ul
       - @complaint.errors.full_messages.each do |e|
         %li= e
 = form_for(@complaint, :html => { :multipart => true }) do |f|
   .field
     = label_tag(:complaint_statement_full_name) do
-      שם מלא
+      = t('new.full_name')
       %sup
-        חובה
+        = t('new.mandatory')
     = f.text_field(:statement_full_name)
   .field
     = label_tag(:complaint_statement_email) do
-      כתובת מייל
+      = t('new.email')
       %sup
-        חובה
+        = t('new.mandatory')
     = f.text_field(:statement_email)
   .field
     = label_tag(:complaint_statement_id) do
-      ת.ז.
+      = t('new.id_number')
       %sup
-        חובה
+        = t('new.mandatory')
     = f.text_field(:statement_id, :length => 10)
   .field
     = label_tag(:complaint_statement_phone) do
-      טלפון
+      = t('new.phone_number')
       %sup
-        חובה
+        = t('new.mandatory')
     = f.text_field(:statement_phone)
   .field
     = label_tag(:complaint_statement_address) do
-      כתובת
+      = t('new.address')
       %sup.recommended
-        מומלץ
+        = t('new.recommended')
     = f.text_field(:statement_address)
   %fieldset
     %legend
-      פרטי מקרה
+      = t('new.case_details')
     .field
-      = f.label(:event_date, "תאריך האירוע")
+      = f.label(:event_date, t('new.event_date'))
       .date-select
-        = f.date_select(:event_date, :start_year => 2007, :end_year => Time.now.year, :use_month_numbers => true, :order => [:day, :month, :year])
+        = f.date_select(:event_date, :start_year => 2007, :end_year => Time.now.year,
+                        :use_month_numbers => true, :order => [:day, :month, :year])
     .field
-      = f.label(:business_type_id, "סוג עסק")
+      = f.label(:business_type_id, t('attributes.complaint.business_type'))
       = f.collection_select(:business_type_id, BusinessType.all, :id, :name)
       .details{ "data-toggleon" => "complaint_business_type_id", "data-togglevalue" => 13}
-        = f.label(:business_type_other, "פירוט:")
+        = f.label(:business_type_other, t('new.details'))
         = f.text_field(:business_type_other)
     .field
       = label_tag(:complaint_business_name) do
-        שם העסק
+        = t('attributes.complaint.business_name')
         %sup
-          חובה
+          = t('new.mandatory')
       = f.text_field(:business_name)
     .field
       = label_tag(:complaint_business_address) do
-        כתובת העסק
+        = t('attributes.complaint.business_address')
         %sup
-          חובה
+          = t('new.mandatory')
       = f.text_field(:business_address)
     :markdown
-      ניתן למצוא מספרי ח.פ. ו-ע.מ. באמצעות [חיפוש ברשם החברות](http://www.justice.gov.il/MOJHeb/RasutHataagidim/RashamHachvarot/PeulotNefotzot/MeidaBsisi.htm)
+      = t('new.locate_business')
     .field
       = label_tag(:complaint_private_company_number) do
-        מספר <abbr title="חברה פרטית">ח.פ.</abbr>
+        = t('new.private_company_abbr')
         %sup.recommended
-          מומלץ
+          = t('new.recommended')
         %sup.info
           ?
           .popover.left
@@ -76,14 +77,14 @@
             .popover-inner
               .popover-content
                 %p
-                  ניתן למצוא את מספר הע.מ. ומספר הח.פ. בראש טופס הקבלה
-                = image_tag('receipt.png', :alt => 'קבלה')
+                  = t('new.where_find')
+                = image_tag('receipt.png', :alt => t('new.receipt'))
       = f.text_field(:private_company_number)
     .field
       = label_tag(:complaint_business_number) do
-        מספר <abbr title="עוסק מורשה">ע.מ.</abbr>
+        = t('new.business_abbr')
         %sup.recommended
-          מומלץ
+          = t('new.recommended')
         %sup.info
           ?
           .popover.left
@@ -91,159 +92,157 @@
             .popover-inner
               .popover-content
                 %p
-                  ניתן למצוא את מספר הע.מ. ומספר הח.פ. בראש טופס הקבלה
-                = image_tag('receipt.png', :alt => 'קבלה')
+                  = t('new.where_find')
+                = image_tag('receipt.png', :alt => t('new.receipt'))
       = f.text_field(:business_number)
     .field
       = label_tag(:complaint_city_id) do
-        עיר\מועצה מקומית
+        = t('new.location_type')
         %sup
-          חובה
-      -# f.collection_select(:city_id, City.all, :id, :name, :prompt => "בחר עיר")
+          = t('new.mandatory')
+      -# f.collection_select(:city_id, City.all, :id, :name, :prompt => t('new.select_city'))
       = f.collection_select(:city_id, [ City.find(227) ], :id, :name)
   %fieldset
     %legend
-      בעל העסק לא אוכף את איסור העישון
+      = t('new.business_person_force')
     %ul.check-list
       %li
         = f.check_box(:smoking_person)
-        = f.label(:smoking_person, "אדם שעישן במקום אסור, לא התבקש להפסיק ע\"י אחד העובדים.")
+        = f.label(:smoking_person, t('new.smoking_person'))
       %li
         = f.check_box(:smoking_ashtrays)
-        = f.label(:smoking_ashtrays, "מוצבות מאפרות שלא בחדר עישון…")
+        = f.label(:smoking_ashtrays, t('new.smoking_ashtrays'))
         .details{ "data-toggleon" => "complaint_smoking_ashtrays" }
-          = f.label(:smoking_ashtrays_details, "פירוט היכן:")
+          = f.label(:smoking_ashtrays_details, t('new.smoking_ashtrays_details'))
           = f.text_field(:smoking_ashtrays_details)
   %fieldset
     %legend
-      חדר העישון אינו חוקי
+      = t('new.illegal_place')
     %ul.check-list
       %li
         = f.check_box(:smoking_room_not_seperate)
-        = f.label(:smoking_room_not_seperate, "אינו נמצא בחדר נפרד לחלוטין.")
+        = f.label(:smoking_room_not_seperate, t('new.smoking_room_not_seperate'))
       %li
         = f.check_box(:smoking_room_too_large)
-        = f.label(:smoking_room_too_large, "החדר גדול מרבע מהשטח הפתוח לציבור המסעדה.")
+        = f.label(:smoking_room_too_large, t('new.smoking_room_too_large'))
       %li
         %ul.inline-check-list
           %li
-            נדרש לעבור דרכו על מנת:
+            = t('new.passing_through')
           %li
             = f.check_box(:smoking_room_must_pass_through_to_public_area)
-            = f.label(:smoking_room_must_pass_through_to_public_area, "להיכנס למקום הציבורי")
+            = f.label(:smoking_room_must_pass_through_to_public_area, t('new.smoking_room_must_pass_through_to_public_area'))
           %li
             = f.check_box(:smoking_room_must_pass_through_to_bathroom)
-            = f.label(:smoking_room_must_pass_through_to_bathroom, "להגיע לשירותים")
+            = f.label(:smoking_room_must_pass_through_to_bathroom, t('new.smoking_room_must_pass_through_to_bathroom'))
           %li
             = check_box_tag(:smoking_room_must_pass_through_to_other_check)
-            = label_tag(:smoking_room_must_pass_through_to_other_check, "להגיע למקום אחר…")
+            = label_tag(:smoking_room_must_pass_through_to_other_check, t('new.smoking_room_must_pass_through_to_other_check'))
         .details{ "data-toggleon" => "smoking_room_must_pass_through_to_other_check" }
-          = f.label(:smoking_room_must_pass_through_to_other, "פירוט:")
+          = f.label(:smoking_room_must_pass_through_to_other, t('new.smoking_room_must_pass_through_to_other'))
           = f.text_field(:smoking_room_must_pass_through_to_other)
       %li
         = f.check_box(:smoking_room_not_closed)
-        = f.label(:smoking_room_not_closed, "הפתח המוביל אליו לא נשמר סגור (למעט בזמן כניסה ויציאה).")
+        = f.label(:smoking_room_not_closed, t('new.smoking_room_not_closed'))
       %li
         = check_box_tag(:smoking_room_smoking_outside_details_check)
-        = label_tag(:smoking_room_smoking_outside_details_check, "מורגש ריח עישון או נראה עשן סיגריות באיזור אחר…")
+        = label_tag(:smoking_room_smoking_outside_details_check, t('new.smoking_room_smoking_outside_details_check'))
         .details{ "data-toggleon" => "smoking_room_smoking_outside_details_check" }
-          = f.label(:smoking_room_smoking_outside_details, "פירוט היכן:")
+          = f.label(:smoking_room_smoking_outside_details, t('new.smoking_room_smoking_outside_details'))
           = f.text_field(:smoking_room_smoking_outside_details)
   %fieldset
     %legend
-      אין שילוט בדבר איסור עישון, כנדרש בחוק (במידה ומדובר במקום בילוי)
+      = t('new.no_smoking_sign_missing')
     %ul.check-list
       %li
         = f.check_box(:smoking_no_signs)
-        = f.label(:smoking_no_signs, "אין שילוט כנדרש בחוק - לפחות שלט \"העישון אסור\" אחד על כל 10 מטר קיר.")
+        = f.label(:smoking_no_signs, t('new.smoking_no_signs'))
       %li
         = f.check_box(:smoking_signs_too_small)
-        = f.label(:smoking_signs_too_small, "השלטים קטנים מ-20×30 ס\"מ.")
+        = f.label(:smoking_signs_too_small, t('new.smoking_signs_too_small'))
       %li
         = f.check_box(:smoking_signs_not_at_height)
-        = f.label(:smoking_signs_not_at_height, "השלטים לא מוצבים בגובה של כ-2 מטר.")
+        = f.label(:smoking_signs_not_at_height, t('new.smoking_signs_not_at_height'))
       %li
         = check_box_tag(:smoking_signs_hidden_details_check)
-        = label_tag(:smoking_signs_hidden_details_check, "השלטים מוסתרים או מוצנעים…")
+        = label_tag(:smoking_signs_hidden_details_check, t('new.smoking_signs_hidden_details_check'))
         .details{ "data-toggleon" => "smoking_signs_hidden_details_check" }
-          = f.label(:smoking_signs_hidden_details, "פירוט:")
+          = f.label(:smoking_signs_hidden_details, t('new.details'))
           = f.text_field(:smoking_signs_hidden_details)
     :markdown
-      ‫במידה ומדובר במקום ציבורי אחר – קניון, חנות, מקום עבודה, אולם אירועים, קולנוע, תיאטרון וכו' – נא לפרט בסעיף ההערות האם‬ ‫קיים שילוט ([תקנות הגבלת העישון במקומות ציבוריים](http://avir-naki.com/SignsRegulations.aspx))
+      = t('new.signs_regulation')
   %fieldset
     %legend
-      פרטים נוספים
+      = t('new.additional_details')
     .field
       = label_tag(:complaint_smoking_comment) do
-        הערות
+        = t('new.comments')
         %sup
-          חובה
+          = t('new.mandatory')
       = f.text_area(:smoking_comment, :size => '80x5')
     .field.image-upload
       = label_tag(:complaint_images) do
-        תמונה
+        = t('new.image')
         %sup.recommended
-          ניתן לצרף מספר תמונות
+          = t('new.attach_images')
       = f.file_field(:complaint_images, :accept => 'image/*', :multiple => true)
   %fieldset{ :class => "statement" }
     %legend
-      הצהרה
+      = t('new.declaration')
     %p
-      ‫אנו ממליצים בנוסף לחתום על ההצהרה מטה. במקרים בהם תמולא ההצהרה יאפשר הדבר לעירייה לנקוט הליך‬
-      ‫משפטי כנגד מפרי החוק. במקרה זה יתכן ותידרש עדות מטעם המתלונן. מילוי ההצהרה יסייע לאכוף את החוק‬
-      ‫ביעילות רבה יותר.‬
+      = t('new.declaration_details')
     %ul.check-list
       %li
         = f.check_box(:statement_agreement, :checked => true)
         = label_tag(:complaint_statement_agreement) do
-          ‫הנני מצהיר/ה כי אהיה מוכן/ה להעיד על נכונות הדברים המדווחים בטופס זה בבית משפט, במידה ואקרא לדיון.‬
+          = t('new.court')
           %sup.recommended
-            מומלץ
-  = f.submit("שלח", :class => "btn btn-primary")
+            = t('new.recommended')
+  = f.submit(t('submit'), :class => "btn btn-primary")
 
 - content_for(:scripts) do
   :javascript
     $(function() {
-    
+
       $('a[href^="http://"]').on('click', function() {
         window.open(this.href);
         return false;
       });
-    
+
       function supportsMultiple() {
         var f = document.createElement('input'); f.type = 'file';
-        
+
         return (!!(f.multiple === false) && !!(f.multiple !== 'undefined'));
       };
-    
+
       var upload = $('.image-upload'),
           addFileUpload = function() {
             var attrReplace = function(index, attr) { return attr + i; },
                 clone = upload.clone();
-            
+
             clone
               .find('label').attr('for', attrReplace).end()
               .find('input:file').attr('id', attrReplace);
-            
+
             $(this).before( clone );
-            
+
             i++;
-            
+
             return false;
           },
           addFileButton,
           count = 4,
           i; // Index counter for the upload fields.
-      
+
       if ( ! supportsMultiple() ) {
         upload.find('sup').remove();
-        
+
         while(i <= count) {
           addFileUpload.call(upload);
         }
-        
-        addFileButton = $('<button id="add-image-upload" class="btn btn-primary">הוספת קובץ נוסף</button>').on('click', addFileUpload);
-        
+
+        addFileButton = $('<button id="add-image-upload" class="btn btn-primary">#{t('new.extra_button')}</button>').on('click', addFileUpload);
+
         upload.after(addFileButton);
       }
     });

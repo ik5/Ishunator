@@ -31,4 +31,66 @@ he:
   to: "נמען"
   cc: "עותק"
   bcc: "עותק נסתר"
-  
+  submit: "שלח"
+  layout:
+    title: "מטהר אוויר - טופס דיווח מקוון על עישון במקומות ציבוריים"
+    description : "טופס דיווח מקוון על עישון במקומות ציבוריים"
+    author: "עמותת אוויר נקי"
+    clear_air: "מטהר אוויר"
+    explain: "טופס דיווח מקוון על עישון במקומות ציבוריים"
+    web_site: "אתר עמותת אוויר-נקי"
+    facebook: "עמותת אוויר-נקי בפייסבוק"
+  new:
+    form_error: "הטופס שהוזן אינו תקין:"
+    full_name: "שם מלא"
+    mandatory: "חובה"
+    address: "כתובת"
+    recommended: "מומלץ"
+    case_details: "פרטי מקרה"
+    email: "כתובת מייל"
+    id_number: "ת.ז."
+    phone_number: "טלפון"
+    event_date: "תאריך האירוע"
+    details: "פירוט:"
+    locate_business: "ניתן למצוא מספרי ח.פ. ו-ע.מ. באמצעות [חיפוש ברשם החברות](http://www.justice.gov.il/MOJHeb/RasutHataagidim/RashamHachvarot/PeulotNefotzot/MeidaBsisi.htm)"
+    private_company_abbr: 'מספר <abbr title="חברה פרטית">ח.פ.</abbr>'
+    where_find: "ניתן למצוא את מספר הע.מ. ומספר הח.פ. בראש טופס הקבלה"
+    receipt: "קבלה"
+    business_abbr: 'מספר <abbr title="עוסק מורשה">ע.מ.</abbr>'
+    location_type: "עיר\\מועצה מקומית"
+    select_city: "בחר עיר"
+    business_person_force: "בעל העסק לא אוכף את איסור העישון"
+    smoking_person: 'אדם שעישן במקום אסור, לא התבקש להפסיק ע"י אחד העובדים.'
+    smoking_ashtrays : "מוצבות מאפרות שלא בחדר עישון…"
+    smoking_ashtrays_details: "פירוט היכן:"
+    illegal_place : "חדר העישון אינו חוקי"
+    smoking_room_not_seperate: "אינו נמצא בחדר נפרד לחלוטין."
+    smoking_room_too_large: "החדר גדול מרבע מהשטח הפתוח לציבור המסעדה."
+    passing_through : "נדרש לעבור דרכו על מנת:"
+    smoking_room_must_pass_through_to_public_area: "להיכנס למקום הציבורי"
+    smoking_room_must_pass_through_to_bathroom: "להגיע לשירותים"
+    smoking_room_must_pass_through_to_other_check: "להגיע למקום אחר…"
+    smoking_room_must_pass_through_to_other: "פירוט:"
+    smoking_room_not_closed: "הפתח המוביל אליו לא נשמר סגור (למעט בזמן כניסה ויציאה)."
+    smoking_room_smoking_outside_details_check: "מורגש ריח עישון או נראה עשן סיגריות באיזור אחר…"
+    smoking_room_smoking_outside_details: "פירוט היכן:"
+    no_smoking_sign_missing: "אין שילוט בדבר איסור עישון, כנדרש בחוק (במידה ומדובר במקום בילוי)"
+    smoking_no_signs: "אין שילוט כנדרש בחוק - לפחות שלט \"העישון אסור\" אחד על כל 10 מטר קיר."
+    smoking_signs_too_small: "השלטים קטנים מ-20×30 ס\"מ."
+    smoking_signs_not_at_height: "השלטים לא מוצבים בגובה של כ-2 מטר."
+    smoking_signs_hidden_details_check: "השלטים מוסתרים או מוצנעים…"
+    signs_regulation: "‫במידה ומדובר במקום ציבורי אחר – קניון, חנות, מקום עבודה, אולם אירועים, קולנוע, תיאטרון וכו' – נא לפרט בסעיף ההערות האם‬ ‫קיים שילוט ([תקנות הגבלת העישון במקומות ציבוריים](http://avir-naki.com/SignsRegulations.aspx))"
+    additional_details: "פרטים נוספים"
+    comments: "הערות"
+    image: "תמונה"
+    attach_images: "ניתן לצרף מספר תמונות"
+    declaration: "הצהרה"
+    declaration_details: |-
+      ‫אנו ממליצים בנוסף לחתום על ההצהרה מטה. במקרים בהם תמולא ההצהרה יאפשר הדבר לעירייה לנקוט הליך‬
+      ‫משפטי כנגד מפרי החוק. במקרה זה יתכן ותידרש עדות מטעם המתלונן. מילוי ההצהרה יסייע לאכוף את החוק‬
+      ‫ביעילות רבה יותר.‬
+    court: "‫הנני מצהיר/ה כי אהיה מוכן/ה להעיד על נכונות הדברים המדווחים בטופס זה בבית משפט, במידה ואקרא לדיון.‬"
+    extra_button: "הוספת קובץ נוסף"
+
+
+
