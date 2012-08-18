@@ -3,7 +3,7 @@
 class ISRAELIIDValidator < ActiveModel::EachValidator
   def validate_each(record, attr_name, value)
     id_12_digits = [1, 2, 1, 2, 1, 2, 1, 2, 1]
-    id_num       = aId.to_s
+    id_num       = value.to_s
     id_num       = '0' * (9 - id_num.to_s.length ) + id_num
 
     result       = 0
