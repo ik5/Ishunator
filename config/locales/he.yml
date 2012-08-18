@@ -26,4 +26,6 @@ he:
   arrive_elsewhere: "להגיע למקום אחר: %{list}"
   private_company: "ח.פ: %{number}"
   norma_business: "ע.מ: %{number}"
+  subject: "אישור תלונתך מספר %{number} בדבר עישון במקומות ציבוריים"
+  subject2: "תלונה בדבר עישון במקומות ציבוריים במקום %{number}, %{date}"
   
