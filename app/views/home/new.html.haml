@@ -47,28 +47,28 @@
         = f.date_select(:event_date, :start_year => 2007, :end_year => Time.now.year,
                         :use_month_numbers => true, :order => [:day, :month, :year])
     .field
-      = f.label(:business_type_id, t('attributes.complaint.business_type'))
+      = f.label(:business_type_id, t('activerecord.attributes.complaint.business_type'))
       = f.collection_select(:business_type_id, BusinessType.all, :id, :name)
       .details{ "data-toggleon" => "complaint_business_type_id", "data-togglevalue" => 13}
         = f.label(:business_type_other, t('new.details'))
         = f.text_field(:business_type_other)
     .field
       = label_tag(:complaint_business_name) do
-        = t('attributes.complaint.business_name')
+        = t('activerecord.attributes.complaint.business_name')
         %sup
           = t('new.mandatory')
       = f.text_field(:business_name)
     .field
       = label_tag(:complaint_business_address) do
-        = t('attributes.complaint.business_address')
+        = t('activerecord.attributes.complaint.business_address')
         %sup
           = t('new.mandatory')
       = f.text_field(:business_address)
     :markdown
-      = t('new.locate_business')
+      #{t('new.locate_business')}
     .field
       = label_tag(:complaint_private_company_number) do
-        = t('new.private_company_abbr')
+        = raw t('new.private_company_abbr')
         %sup.recommended
           = t('new.recommended')
         %sup.info
@@ -83,7 +83,7 @@
       = f.text_field(:private_company_number)
     .field
       = label_tag(:complaint_business_number) do
-        = t('new.business_abbr')
+        = raw t('new.business_abbr')
         %sup.recommended
           = t('new.recommended')
         %sup.info
@@ -171,7 +171,7 @@
           = f.label(:smoking_signs_hidden_details, t('new.details'))
           = f.text_field(:smoking_signs_hidden_details)
     :markdown
-      = t('new.signs_regulation')
+      #{t('new.signs_regulation')}
   %fieldset
     %legend
       = t('new.additional_details')
