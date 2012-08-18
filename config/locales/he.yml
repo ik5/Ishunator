@@ -21,3 +21,9 @@ he:
         statement_email: "כתובת המייל"
         statement_full_name: "השם המלא"
         smoking_comment: "שדה ההערה"
+  enter_public: "להיכנס למקום הציבורי"
+  arrive_places: "להגיע לשירותים"
+  arrive_elsewhere: "להגיע למקום אחר: %{list}"
+  private_company: "ח.פ: %{number}"
+  norma_business: "ע.מ: %{number}"
+  
