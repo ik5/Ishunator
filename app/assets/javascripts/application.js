@@ -7,15 +7,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require rails.validations
 
 $(function () {
-	
+
 	$('[data-toggleon]').each(function () {
-		
+
 		function getType(el) {
 			return (el.attr('type') || el.get(0).nodeName).toLowerCase();
 		}
-		
+
 		var self		= $(this),
 			targetId 	= self.data('toggleon'),
 			target 		= $('#' + targetId),
@@ -31,9 +32,9 @@ $(function () {
 						self.toggle(el.val() == self.data('togglevalue'));
 					}).trigger('change');
 				}
-			}; 
-		
+			};
+
 		(types[targetType] || $.noop)(target);
 	});
-	
+
 });
