@@ -1,5 +1,8 @@
 he:
   testabc: "ניסיון"
+  errors:
+    messages:
+      statement_id: "מספר תעודת הזהות אינו חוקי"
   activerecord:
     errors:
       messages:
