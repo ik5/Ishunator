@@ -61,6 +61,7 @@ GEM
       uuidtools (~> 2.1)
     builder (3.0.0)
     chunky_png (1.2.6)
+    client_side_validations (3.1.4)
     cocaine (0.2.1)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
@@ -155,6 +156,7 @@ PLATFORMS
 DEPENDENCIES
   aws-s3
   aws-sdk
+  client_side_validations
   coffee-rails (~> 3.1.1)
   compass!
   compass-rails
