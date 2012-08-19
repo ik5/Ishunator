@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120304150315) do
+ActiveRecord::Schema.define(:version => 20120819101221) do
 
   create_table "business_types", :force => true do |t|
     t.string   "name",       :null => false
@@ -81,6 +81,8 @@ ActiveRecord::Schema.define(:version => 20120304150315) do
     t.string   "business_number"
     t.boolean  "confirmed",                                     :default => false, :null => false
     t.string   "confirmation_token",                                               :null => false
+    t.time     "complaint_start_time"
+    t.time     "end_time"
   end
 
   add_index "complaints", ["business_type_id"], :name => "index_complaints_on_business_type_id"
