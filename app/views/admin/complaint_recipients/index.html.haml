@@ -69,19 +69,19 @@
   :javascript
     $(function() {
       var form = $('form');
-      
+
       $('#city_id', form).on('change', function() {
         // Update table.
       });
-      
+
       $('.select-all', form).on('change', function() {
         $(this).closest('table').find('input:checkbox').prop('checked', this.checked);
       });
-      
+
       $('.delete-recipients', form).on('click', function() {
       	var self = $(this),
       	    ids = self.closest('table').find('input:checkbox:checked:not(.select-all)');
-        $.post(this.href, { 
+        $.post(this.href, {
         	  '_method': 'delete',
         	  id: ids.map(function() { return this.value; }).get()
         	},
@@ -89,10 +89,10 @@
         	  ids.closest('tr').remove();
         	},
         	'json');
-        	
+
         return false;
       });
-      
+
       form.on({
         'ajax:success': function(xhr, data) {
           var html = JST['templates/recipient_item']({ recipient: data });
@@ -101,7 +101,7 @@
         'ajax:error': function(event, xhr, status) {
           var main = $('#main'),
               html = JST['templates/errors']({ errors: $.parseJSON(xhr.responseText) });
-              
+
           main.find('.error').remove();
           main.prepend(html);
         }
