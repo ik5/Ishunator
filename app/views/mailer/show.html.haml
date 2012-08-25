@@ -14,11 +14,11 @@
   #statement
     :markdown
       ### הצהרה ופרטים אישיים ###
-      **שם מלא:** #{@complaint.statement_full_name}  
-      **כתובת מייל:** #{@complaint.statement_email}  
-      **ת.ז:** #{@complaint.statement_id}  
-      **כתובת:** #{@complaint.statement_address}  
-      **טלפון:** #{@complaint.statement_phone}  
+      **שם מלא:** #{@complaint.statement_full_name}
+      **כתובת מייל:** #{@complaint.statement_email}
+      **ת.ז:** #{@complaint.statement_id}
+      **כתובת:** #{@complaint.statement_address}
+      **טלפון:** #{@complaint.statement_phone}
       **תאריך:** #{@complaint.created_at.strftime("%d/%m/%Y")}
     - if @complaint.statement_agreement
       :markdown
