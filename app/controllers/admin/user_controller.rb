@@ -4,6 +4,10 @@ class Admin::UserController < ApplicationController
 
   end
 
+  def show
+    render :index
+  end
+
   def create
     username = params[:username]
     password = params[:password]
@@ -15,7 +19,7 @@ class Admin::UserController < ApplicationController
   rescue
     flash[:error] = 'Could not save user'
   ensure
-    redirect_to admin_user_index_path
+    redirect_to admin_user_path
   end
 
 end
