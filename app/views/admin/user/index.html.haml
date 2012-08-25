@@ -1,1 +1,13 @@
- 
+%h2
+  עריכת משתמשים
+
+= form_for(:admin_user, :remote => false) do |f|
+  %br
+  .field
+    = f.label(:username, 'שם משתמש')
+    = f.text_field(:username)
+  .field
+    = f.label(:password, 'סיסמה')
+    = f.password_field(:password)
+
+  = f.submit(t('submit'), :class => "btn btn-primary")
