@@ -1,4 +1,4 @@
-class Admin::UserController < ApplicationController
+class Admin::UserController < Admin::AdminController
 
   def index
 
@@ -9,11 +9,11 @@ class Admin::UserController < ApplicationController
   end
 
   def create
-    username = params[:username]
-    password = params[:password]
+    username = params[:admin_user][:username]
+    password = params[:admin_user][:password]
 
-    user = find_or_initialize_by_username(username)
-    user.password=password
+    user = AdminUser.find_or_initialize_by_username(username)
+    user.pass = password
     user.save!
     flash[:info] = "The user %{username} was saved properly"
   rescue
