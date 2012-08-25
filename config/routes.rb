@@ -1,26 +1,26 @@
 Ishunon::Application.routes.draw do
-  
+
   namespace :admin do
-  
+
     resources :complaint_recipients, :only => [:index, :create, :update, :destroy], :path => :recipients, :as => :recipients do
       collection do
         delete '/' => 'complaint_recipients#destroy'
       end
     end
-    
+
     resources :complaints, :only => [:index]
-  
+    resources :user
   end
-  
+
   resources :complaints, :only => [:index, :new, :create, :show], :path => '', :controller => :home do
     member do
       get "thankyou" => "home#thankyou", :as => :thankyou
     end
   end
-  
+
   match 'confirm/:confirmation_token' => 'home#confirm', :as => :confirm_complaint
 
-  
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
