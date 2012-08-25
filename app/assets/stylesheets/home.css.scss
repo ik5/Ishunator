@@ -61,7 +61,7 @@ header {
   @include box-shadow(0 -20px 20px 20px rgba(0, 0, 0, 0.8), 0 10px 25px -15px rgba(0, 0, 0, 0.6) inset);
   margin-bottom: 18px;
   padding: 30px $padding;
-  
+
   hgroup {
     background: url('nosmoking.png') transparent no-repeat center right;
     height: 80px;
@@ -71,7 +71,7 @@ header {
     border: 1px solid $secondarybackground;
     float: left;
     margin-top: 20px;
-    
+
     img {
       height: 36px;
     }
@@ -95,7 +95,7 @@ footer {
   background: $secondarybackground;
   @include box-shadow(0 20px 20px 20px rgba(0, 0, 0, 0.6), 0 10px 25px -15px rgba(0, 0, 0, 0.6) inset);
   padding: 0 $padding;
-  
+
   ul {
     line-height: 30px;
     padding: 25px 0;
@@ -111,9 +111,9 @@ footer {
     color: $bright;
     text-decoration: underline;
   }
-} 
+}
 
-#thankyou {    
+#thankyou {
   big {
     background: $highlight;
     color: #fff;
@@ -161,7 +161,7 @@ h2, h3, h4, h5, h6, fieldset legend {
   padding-top: 6px;
   text-align: right;
   width: 150px;
-  
+
   sup {
     background-color: #B94A48;
     color: #fff;
@@ -170,13 +170,13 @@ h2, h3, h4, h5, h6, fieldset legend {
     margin-left: 3px;
     padding: 0px 2px 1px;
     top: -0.7em;
-    
+
     @include border-radius(3px);
-    
+
     &.recommended {
       background-color: #F89406;
     }
-    
+
     &.info {
       background-color: #3A87AD;
     }
@@ -487,37 +487,37 @@ sup:hover > .popover {
   z-index: 2;
   padding: 5px;
   pointer-events: none; /* Makes sure the tooltip won't appear on mouseover. */
-  
-  transition-property: opacity, left, top;  
+
+  transition-property: opacity, left, top;
   transition-duration: .5s;
   transition-timing-function: ease-in;
-  -moz-transition-property: opacity, left, top;  
-  -moz-transition-duration: .5s;  
-  -webkit-transition-property: opacity, left, top;  
-  -webkit-transition-duration: .5s;  
-  -o-transition-property: opacity, left, top;  
-  -o-transition-duration: .5s; 
-  
+  -moz-transition-property: opacity, left, top;
+  -moz-transition-duration: .5s;
+  -webkit-transition-property: opacity, left, top;
+  -webkit-transition-duration: .5s;
+  -o-transition-property: opacity, left, top;
+  -o-transition-duration: .5s;
+
   &.top {
-    margin-left: -109px; 
+    margin-left: -109px;
     margin-top: -189px;
     top: -50%;
     left: 50%;
   }
   &.right {
-    margin-left: 5px; 
+    margin-left: 5px;
     margin-top: -92px;
     top: 50%;
     right: -50%;
   }
   &.bottom {
-    margin-left: -109px; 
+    margin-left: -109px;
     margin-top: 5px;
     bottom: -50%;
     left: 50%;
   }
   &.left {
-    margin-left: -220px; 
+    margin-left: -220px;
     margin-top: -92px;
     top: 50%;
     left: -50%;
@@ -531,7 +531,7 @@ sup:hover > .popover {
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
   }
-  &.right .arrow { 
+  &.right .arrow {
     left: 0;
     top: 50%;
     margin-top: -5px;
@@ -588,7 +588,7 @@ sup:hover > .popover {
   }
   a {
     color: lighten($highlight, 35%);
-    
+
     &:link, &:visited {
       color: lighten($highlight, 35%);
     }
@@ -600,11 +600,11 @@ sup:hover > .popover {
 .lt-ie10 {
   sup.info {
     overflow: hidden;
-    
+
     &:hover {
       overflow: visible;
     }
-    
+
     &:hover .popover {
       display: block;
     }
@@ -612,9 +612,9 @@ sup:hover > .popover {
   .popover {
     display: none;
   }
-} 
+}
 
-.oldie 
+.oldie
 
 .check-list {
   margin-top: 5px;
@@ -644,7 +644,7 @@ sup:hover > .popover {
 
 .inline-check-list {
   overflow: hidden;
-  
+
   label[for], span {
     display: inline-block;
     float: none;
@@ -675,6 +675,10 @@ sup:hover > .popover {
   margin-top: 5px;
 }
 
+.hour-select select {
+  width: 65px;
+}
+
 #letter {
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.6);
@@ -682,45 +686,45 @@ sup:hover > .popover {
   @include box-shadow(0 5px 10px 0 rgba(0, 0, 0, 0.4));
   font-size: 11pt;
   padding: 10px;
-  
+
   h2, h3, h4 {
     color: #000;
     margin: 10px 0;
     text-shadow: none;
   }
-  
+
   h2 {
     font-size: 120%;
     text-align: center;
   }
-  
+
   h3 {
     font-size: 100%;
   }
-  
+
   p {
     margin: 5px 0;
   }
-  
+
   ol {
     list-style-type: decimal;
     padding-right: 23px;
   }
-  
+
   em {
     font-style: normal;
     font-weight: bold;
   }
-  
+
   .date {
     float: left;
   }
-  
+
   #statement {
     border: 1px solid #000;
     margin-top: 10px;
     padding: 10px;
-  
+
     h3 {
       margin-top: 0;
     }
@@ -882,7 +886,7 @@ sup:hover > .popover {
   }
   .images a {
     @include box-shadow(0 1px 1px #000);
-    
+
     &:hover {
       @include box-shadow(0 1px 4px $highlight);
     }
@@ -892,7 +896,7 @@ sup:hover > .popover {
 .images {
   overflow: hidden;
   padding: 3px 0;
-  
+
   a {
     border: 1px solid #DDD;
     float: right;
@@ -900,15 +904,15 @@ sup:hover > .popover {
     margin-left: 5px;
     padding: 4px;
     width: 120px;
-    
+
     @include border-radius(4px);
     @include box-shadow(0 1px 1px rgba(0, 0, 0, 0.075));
-    
+
     &:hover {
       border-color: $highlight;
       @include box-shadow(0 1px 4px opacify($highlight, 0.25));
     }
-    
+
     img {
       display: block;
       max-width: 100%;
@@ -925,21 +929,21 @@ sup:hover > .popover {
     padding-left: 5px !important;
     padding-right: 5px !important;
   }
-  
+
   .field {
     margin-bottom: 10px;
   }
-  
+
   .field label[for] {
     float: none;
     display: block;
     margin-bottom: 5px;
   }
-  
+
   .field input, .field select, .field select:first-child {
     margin-right: 0;
   }
-  
+
   .inline-check-list li {
     float: none !important;
   }
@@ -951,9 +955,9 @@ sup:hover > .popover {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
-  
+
   .inline-check-list li {
     float: none !important;
   }
-  
+
 }

@@ -47,6 +47,14 @@
         = f.date_select(:event_date, :start_year => 2007, :end_year => Time.now.year,
                         :use_month_numbers => true, :order => [:day, :month, :year])
     .field
+      = f.label(:complaint_start_time, t('new.complaint_start_time'))
+      .hour-select
+        = f.time_select(:complaint_start_time)
+    .field
+      = f.label(:end_time, t('new.end_time'))
+      .hour-select
+        = f.time_select(:end_time)
+    .field
       = f.label(:business_type_id, t('activerecord.attributes.complaint.business_type'))
       = f.collection_select(:business_type_id, BusinessType.all, :id, :name)
       .details{ "data-toggleon" => "complaint_business_type_id", "data-togglevalue" => 13}

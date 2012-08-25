@@ -54,6 +54,8 @@ he:
     id_number: "ת.ז."
     phone_number: "טלפון"
     event_date: "תאריך האירוע"
+    complaint_start_time: "שעת התחלת האירוע"
+    end_time: "שעת סיום האירוע"
     details: "פירוט:"
     locate_business: "ניתן למצוא מספרי ח.פ. ו-ע.מ. באמצעות [חיפוש ברשם החברות](http://www.justice.gov.il/MOJHeb/RasutHataagidim/RashamHachvarot/PeulotNefotzot/MeidaBsisi.htm)"
     private_company_abbr: 'מספר <abbr title="חברה פרטית">ח.פ.</abbr>'
