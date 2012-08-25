@@ -19,7 +19,7 @@ class Admin::UserController < ApplicationController
   rescue
     flash[:error] = 'Could not save user'
   ensure
-    redirect_to admin_user_path
+    redirect_to admin_user_index_path
   end
 
 end

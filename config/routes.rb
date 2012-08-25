@@ -9,10 +9,7 @@ Ishunon::Application.routes.draw do
     end
 
     resources :complaints, :only => [:index]
-    resources :user do
-      get 'index'
-      post 'create'
-    end
+    resources :user
   end
 
   resources :complaints, :only => [:index, :new, :create, :show], :path => '', :controller => :home do
